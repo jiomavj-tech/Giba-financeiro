@@ -1,0 +1,33 @@
+{
+  "name": "GIBA Financeiro — Contas e MEI",
+  "short_name": "GIBA Financeiro",
+  "description": "Gestão financeira offline com classificação de lançamentos, regras por estabelecimento, contas pessoais/empresa, comprovantes e controle MEI.",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#0b1627",
+  "lang": "pt-BR",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Proteção: dados financeiros NUNCA vão para este repositório público
+*.json
+*.ofx
+*.OFX
+*.qfx
+*.csv
+*.pdf
+*.zip
+comprovantes/
+backup*/

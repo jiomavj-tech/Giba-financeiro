@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1627"><meta name="application-name" content="GIBA Financeiro"><meta name="description" content="Gestão financeira privada com módulo MEI 2026: teto anual, receitas, despesas e declaração anual."><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png"><link rel="apple-touch-icon" href="./icons/icon-192.png"><title>GIBA Financeiro</title>
+<style>
+:root{color-scheme:light;--navy:#0b1627;--ink:#12243a;--sub:#66788f;--line:#e4eaf0;--soft:#f4f7fa;--teal:#007f82;--green:#0c8c73;--red:#c3414a;--gold:#ae780e;--radius:19px;--shadow:0 8px 28px rgba(26,43,67,.06)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f6fa;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.46}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #84caca;outline-offset:2px}button:disabled{opacity:.45;cursor:not-allowed}.shell{max-width:1240px;margin:auto;padding:0 20px 38px}.top{background:var(--navy);color:white;padding:23px 0 95px}.top .shell{padding-bottom:0}.head{display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:43px;height:43px;background:linear-gradient(140deg,#10b29f,#00848b);display:grid;place-items:center;border-radius:13px;font-weight:900;letter-spacing:-2px;color:white;font-size:19px}.brand strong{display:block;font-size:17px;letter-spacing:.02em}.brand small{font-size:11px;color:#afc1d1;letter-spacing:.13em}.offline{border:1px solid #3a4a5d;color:#c7d8e4;border-radius:100px;padding:7px 11px;font-size:12px;white-space:nowrap}.offline:before{content:"";display:inline-block;background:#50d4a2;width:8px;height:8px;border-radius:50%;margin-right:6px}.hero{margin-top:34px;display:flex;justify-content:space-between;gap:22px;align-items:end}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;color:#83dfce;font-weight:800;margin:0 0 8px}.hero h1{font-size:clamp(27px,4vw,42px);letter-spacing:-.045em;margin:0;line-height:1.12}.hero p{color:#b3c3d0;margin:9px 0 0;max-width:620px}.hero-right{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.btn{border:1px solid transparent;padding:10px 13px;border-radius:11px;font-weight:700;display:inline-flex;gap:7px;align-items:center;justify-content:center}.btn.primary{background:var(--teal);color:white}.btn.light{background:white;color:var(--ink);border-color:#dee8ef}.btn.dark{background:#182b42;color:white;border-color:#415266}.btn.ghost{background:#f0f5f7;color:var(--ink)}.btn.danger{background:#fff0f1;color:#a62637}.btn.sm{padding:7px 10px;font-size:12px}.main{margin-top:-66px;position:relative}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.controls{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:18px 21px;margin-bottom:17px}.controls .label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:var(--sub)}.month-controls{display:flex;align-items:center;gap:8px;margin-top:4px}.month-controls input{border:0;font-size:20px;font-weight:850;color:var(--ink);width:170px;background:transparent}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 11px;color:var(--ink);font-weight:900}.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#f8fafb;padding:9px 13px;border-radius:100px;font-size:12px;color:#587087}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.kpi{padding:19px 20px;min-width:0}.kpi .topline{display:flex;align-items:center;gap:8px;color:#5e7289;font-size:12px;font-weight:700}.dot{width:9px;height:9px;border-radius:3px;background:#6089a5}.dot.warn{background:#dc875a}.dot.green{background:#00aa8e}.dot.dark{background:#233e59}.kpi .value{font-size:clamp(22px,2.6vw,31px);font-weight:850;letter-spacing:-.045em;margin:12px 0 5px;white-space:nowrap}.kpi .hint{font-size:12px;color:#8192a5}.kpi.major{background:#ecf9f5;border-color:#b6e8d9}.kpi.major .value{color:#087862}.twocol{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:17px}.section{padding:21px}.sec-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.sec-head h2{margin:0;font-size:19px;letter-spacing:-.025em}.sec-head p{margin:4px 0 0;color:var(--sub);font-size:12px}.tag{background:#f0f4f8;color:#52677d;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:800}.target-main{padding:19px;border-radius:14px;background:linear-gradient(120deg,#0d2439,#154e54);color:white;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}.target-main small{font-size:12px;color:#bed9dd}.target-main strong{display:block;font-weight:850;letter-spacing:-.045em;font-size:clamp(26px,4vw,40px);margin:2px 0}.target-main span{color:#b2d5d7;font-size:12px}.target-side{text-align:right}.target-side b{font-size:21px}.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:17px}label.field{display:grid;gap:6px;font-size:12px;font-weight:700;color:#587084;min-width:0}.field input,.field select,.field textarea{width:100%;border:1px solid #d6e0e8;padding:10px 11px;border-radius:9px;background:white;color:var(--ink)}.field input:disabled{background:#f5f8fa}.footnote{margin:12px 0 0;color:#698096;font-size:12px}.warning{background:#fff5e5;color:#805b13;border:1px solid #f6ddb0;padding:12px 14px;border-radius:10px;margin-top:12px;font-size:12px}.error{background:#fff0f0;color:#a22232;border:1px solid #f2c5c9;padding:11px;border-radius:10px;margin-top:12px}.meter{height:12px;background:#ebf0f4;border-radius:20px;overflow:hidden;display:flex;margin:15px 0 17px}.meter .paid{background:#19aa8d}.meter .open{background:#e19e63}.legend{display:flex;gap:14px;color:#647b91;font-size:12px;flex-wrap:wrap}.legend i{width:8px;height:8px;display:inline-block;border-radius:3px;margin-right:5px}.row-pair{display:flex;justify-content:space-between;border-bottom:1px solid #edf0f4;gap:9px;padding:10px 0;font-size:13px}.row-pair span{color:#61758a}.row-pair b{text-align:right}.period-list{display:grid;gap:7px;margin-top:15px}.period-item{display:grid;grid-template-columns:90px 1fr 102px;align-items:center;gap:10px;width:100%;border:1px solid transparent;background:white;border-radius:8px;text-align:left;padding:6px 7px}.period-item:hover,.period-item.active{background:#f0f7f6;border-color:#cfe6e3}.period-item span{color:#61758a;font-size:12px}.period-item b{font-size:12px;text-align:right}.bar-bg{height:13px;background:#ecf1f5;border-radius:8px;overflow:hidden}.bar{height:100%;background:#5b9f9e;border-radius:8px;min-width:2px}.period-item.active .bar{background:#007c80}.list-card{margin-top:17px;overflow:hidden}.list-head{padding:20px 21px 10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}.list-head h2{margin:0;font-size:19px}.filters{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.filter{padding:8px 10px;background:#f4f7f9;color:#587086;border:1px solid transparent;border-radius:9px;font-size:12px;font-weight:750}.filter.on{background:#e1f3f0;color:#046c6b;border-color:#9fd2c8}.filters select{border:1px solid #d9e3eb;background:white;border-radius:9px;padding:8px;color:#496174;font-size:12px}.table-scroll{width:100%;overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:730px}th{background:#f8fafc;border-block:1px solid var(--line);color:#708296;font-size:11px;text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:13px 20px}td{padding:13px 20px;border-bottom:1px solid #edf1f4;vertical-align:middle}td strong{font-size:13px}td small{display:block;color:#7a8da0;font-size:11px;margin-top:3px;max-width:480px}td.money{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}td.end{text-align:right;white-space:nowrap}.badge{padding:5px 9px;border-radius:50px;font-size:11px;font-weight:750;display:inline-flex}.badge.pending{background:#fff5e9;color:#956015}.badge.paid{background:#e9f8f2;color:#11785c}.badge.late{background:#ffeded;color:#af2931}.badge.uncertain{background:#eef3fa;color:#516b86}.action-cell{display:flex;justify-content:flex-end;gap:5px}.tiny{border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:#fff;color:#526a7d;font-size:12px;font-weight:700}.tiny.paid-toggle{background:#eef9f3;color:#087a63;border-color:#c5e5d9}.empty{padding:28px;color:#8293a5;text-align:center}.bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 21px;color:#8293a5;font-size:12px;flex-wrap:wrap}.footer{color:#768b9e;font-size:12px;text-align:center;padding:24px 0 6px}.footer b{color:#415a73}.modal{position:fixed;inset:0;background:rgba(3,15,26,.65);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}.modal.open{display:flex}.panel{background:#fff;width:min(550px,100%);padding:24px;border-radius:18px;max-height:92dvh;overflow:auto;box-shadow:0 30px 70px #07131a55}.panel h2{margin:0 0 7px}.panel p{margin:0 0 20px;font-size:12px;color:#62778c}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-grid .wide{grid-column:1/-1}.modal-buttons{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}.alert{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#183446;color:white;padding:12px 18px;border-radius:12px;box-shadow:0 12px 25px #142f3b44;font-size:13px;z-index:60;display:none;max-width:92vw}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1020px){.kpis{grid-template-columns:repeat(2,1fr)}.twocol{grid-template-columns:1fr}.period-list{grid-template-columns:repeat(2,1fr)}.target-side{text-align:left}}
+@media(max-width:650px){.shell{padding:0 13px 30px}.top{padding:17px 0 90px}.head{gap:8px}.offline{font-size:10px;padding:6px 8px}.hero{margin-top:24px;display:block}.hero h1{font-size:31px}.hero-right{margin-top:19px}.main{margin-top:-58px}.controls{padding:15px}.month-controls input{width:148px;font-size:18px}.controls .actions{width:100%}.controls .actions .btn{flex:1}.chip{display:none}.kpis{gap:9px}.kpi{padding:14px 12px}.kpi .value{font-size:clamp(20px,5.25vw,27px)}.kpi .hint{font-size:10px}.kpi .topline{font-size:11px}.section{padding:17px}.calc-grid{grid-template-columns:repeat(2,1fr)}.target-main{padding:15px}.target-main strong{font-size:32px}.period-list{grid-template-columns:1fr 1fr;gap:4px}.period-item{grid-template-columns:1fr;gap:3px}.period-item span{font-size:11px}.period-item b{text-align:left}.bar-bg{order:3}.list-head{padding:17px 15px 12px}.bottom{padding:15px}th,td{padding:12px 13px}.table-scroll{overflow-x:visible}table{display:block;min-width:0;width:100%}thead{display:none}tbody{display:grid;gap:10px;padding:11px}tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;gap:7px 8px;border:1px solid #e3eaf0;border-radius:12px;padding:13px 12px;background:#fff}tbody tr td{display:block;padding:0;border:0;min-width:0}tbody tr td:nth-child(1){grid-column:1;grid-row:1;color:#758b9d}tbody tr td:nth-child(2){grid-column:1/-1;grid-row:2}tbody tr td:nth-child(3){grid-column:1;grid-row:3;font-size:11px;color:#6a8296}tbody tr td:nth-child(4){grid-column:2;grid-row:3;text-align:right}tbody tr td:nth-child(5){grid-column:2;grid-row:1;font-size:16px;text-align:right}tbody tr td:nth-child(6){grid-column:1/-1;grid-row:4;border-top:1px solid #edf1f4;padding-top:10px;margin-top:3px}tbody tr td:nth-child(2) strong{font-size:14px}tbody tr td:nth-child(2) small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}tbody tr td.empty{grid-column:1/-1;grid-row:1;text-align:center;padding:24px}.tiny{padding:7px 12px}}
+@media print{body{background:#fff}.top{padding:10px;background:#fff;color:#111}.top .eyebrow,.top p,.offline,.hero-right,.controls .actions,.btn,.filters,.action-cell,.footer,.modal,.period-list{display:none!important}.main{margin-top:0}.card{box-shadow:none;break-inside:avoid}.kpis{grid-template-columns:repeat(4,1fr)}.twocol{grid-template-columns:1.2fr .8fr}.controls{padding:8px}table{min-width:0}}
+.expense-box{margin-top:16px;border:1px solid #dce8ed;background:#f7fafb;border-radius:14px;padding:16px}.expense-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:11px}.expense-head strong{font-size:14px}.expense-head small{color:#627d8d;font-size:11px}.expense-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.expense-summary{display:grid;gap:5px;margin-top:12px;font-size:12px;color:#5a6f7c}.expense-line{display:flex;align-items:center;justify-content:space-between;gap:10px}.expense-total{margin-top:4px;padding-top:9px;border-top:1px solid #d8e4eb;color:#194d4b;font-weight:800}.expense-summary b{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:390px){.expense-fields{grid-template-columns:1fr}}
+
+/* V3: conciliação com extratos e planejamento de recomposição do limite */
+.bank-hero{margin-top:17px}.bank-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}.bank-head h2{margin:0;font-size:21px}.bank-head p{margin:6px 0 0;color:var(--sub);font-size:12px}.bank-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.bank-card{background:#f7fafb;border:1px solid #e2e9f0;border-radius:14px;padding:15px}.bank-card small{color:#647b91;font-weight:750;display:block}.bank-card strong{font-size:clamp(22px,2.7vw,29px);display:block;margin:8px 0 4px;font-variant-numeric:tabular-nums;letter-spacing:-.04em}.bank-card strong.negative{color:#b73c46}.bank-card strong.positive{color:#0c8c73}.bank-card span{font-size:11px;color:#7f90a3}.bank-banner{margin-top:13px;padding:12px 14px;border-radius:10px;border:1px solid #f2dcaf;background:#fff9ea;color:#785419;font-size:12px}.recovery{margin-top:14px;background:#f1f8f8;border:1px solid #d2e6e4;border-radius:14px;padding:15px}.recovery-row{display:flex;align-items:center;gap:9px;font-weight:800}.recovery-row input{width:18px;height:18px;accent-color:var(--teal)}.recovery-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;max-width:460px}.recovery-result{margin-top:12px;font-size:12px;color:#435a70}.recovery-result strong{font-size:17px;color:#136b67}.bank-history{margin-top:17px}.bank-filters{display:flex;gap:9px;flex-wrap:wrap}.bank-filters select{background:#fff;border:1px solid #dce5ec;padding:9px 10px;border-radius:10px;color:var(--ink)}.bank-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:17px 0}.bank-stat{border:1px solid #e0e8ef;border-radius:12px;padding:13px;min-width:0}.bank-stat small{color:#657b90;font-size:11px;display:block}.bank-stat strong{display:block;font-size:clamp(18px,2.3vw,25px);letter-spacing:-.04em;margin-top:6px;white-space:nowrap}.bank-data{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:20px}.bank-sub{font-size:14px;font-weight:800;margin:0 0 10px}.bank-category{margin:0 0 11px}.bank-category-line{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:12px;margin:0 0 5px}.bank-category-line b{white-space:nowrap}.bank-progress{height:8px;background:#edf2f6;border-radius:9px;overflow:hidden}.bank-progress i{display:block;background:#548f97;height:100%;border-radius:9px}.bank-note{font-size:12px;color:#71879b;line-height:1.6}.bank-table{min-width:580px}.bank-table td,.bank-table th{padding:9px 10px}.bank-table td{font-size:12px}.bank-table th{font-size:10px}.bank-table .debit{color:#b64150;font-weight:800}.bank-table .credit{color:#07856b;font-weight:800}.bank-table small{color:#7b8c9b;display:block;font-size:11px}.bank-legend{color:#677f91;font-size:11px;margin-top:13px}.bank-empty{padding:18px;color:#6b8092}.bank-chip{display:inline-block;border:1px solid #dbe5ec;border-radius:7px;padding:3px 6px;color:#5c7587;font-size:10px}.text-quiet{font-size:12px;color:#718599}.bank-privacy{font-size:12px;margin-top:10px;color:#637a90}
+.bank-data>div{min-width:0}.bank-history .table-scroll{overflow-x:auto;max-width:100%}.bank-history .bank-table{display:table;width:100%;min-width:580px}.bank-history .bank-table thead{display:table-header-group}.bank-history .bank-table tbody{display:table-row-group;padding:0}.bank-history .bank-table tbody tr{display:table-row}.bank-history .bank-table td{display:table-cell;width:auto;max-width:unset}.bank-history .bank-table th{display:table-cell}@media(max-width:900px){.bank-data{grid-template-columns:minmax(0,1fr)}.bank-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.bank-grid{grid-template-columns:1fr}.bank-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.bank-stat strong{font-size:19px}.recovery-controls{grid-template-columns:1fr}.bank-hero{padding:17px}.bank-history{padding:17px}.bank-filters{width:100%}.bank-filters select{flex:1;min-width:120px}}
+
+/* v4 separação de conta e classificação explícita das receitas */
+.bank-switch{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.bank-tab{border-radius:12px;border:1px solid #d8e6ec;background:#f5f8fb;color:#466176;cursor:pointer;padding:12px 19px;font-weight:800;font-size:14px;min-width:145px}
+.bank-tab.active{background:#086b72;color:white;border-color:#086b72;box-shadow:0 4px 14px #086b7226}
+.bank-card.primary-bank{background:#edf8f7;border-color:#c3e2dc}
+.classification-zone{background:#f6fafb;border:1px solid #deeaee;border-radius:14px;padding:15px;margin:14px 0 17px}
+.classification-zone h3{font-size:15px;margin:0 0 8px;color:#19485a}
+.classification-zone .bank-stats{margin:12px 0}
+.bank-stat span{color:#73869a;font-size:11px;display:block;line-height:1.35}
+.bank-stat.highlight-personal{background:#fff7e9;border-color:#f1dda9}
+.bank-credit-select{border:1px solid #cadde6;border-radius:8px;padding:8px;max-width:172px;font-size:11px;background:#fff;color:#1d4253}
+.bank-credit-locked{color:#926426;font-size:11px;font-weight:800;max-width:175px}
+.bank-credit-other{color:#6c8192;font-size:11px}
+.bank-history .bank-table{min-width:735px}
+.bank-history .bank-table td:last-child{max-width:185px}
+.bank-tab:focus-visible,.bank-credit-select:focus-visible{outline:3px solid #38b4ac;outline-offset:2px}
+@media(max-width:600px){.bank-switch{display:grid;grid-template-columns:1fr 1fr}.bank-tab{min-width:0;padding:12px 5px}.classification-zone{padding:11px}.classification-zone .bank-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.classification-zone .bank-stat{padding:9px}.classification-zone .bank-stat strong{font-size:17px}}
+
+/* V5: gerenciamento de gastos por categoria, com visualizações inteiramente offline */
+.expense-dashboard{margin:18px 0;border:1px solid #dde8ed;border-radius:17px;padding:18px;background:linear-gradient(150deg,#f6fbfb,#fff 56%)}
+.expense-dashboard-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.expense-dashboard-head h3{font-size:19px;margin:0;color:#15344a}.expense-dashboard-head p{margin:5px 0 0;font-size:12px;color:#72879a}
+.expense-toggle{display:flex;gap:3px;border-radius:12px;background:#e8eff3;border:1px solid #d9e5e9;padding:4px}
+.expense-mode{border:0;background:transparent;color:#527080;padding:9px 11px;font-size:12px;font-weight:750;border-radius:8px}.expense-mode.active{background:#fff;color:#006c73;box-shadow:0 1px 5px #21384a1b}
+.expense-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:17px 0}.expense-summary-item{padding:12px 13px;border-radius:12px;background:#fff;border:1px solid #e3edf1}.expense-summary-item small{color:#647a8a;font-size:11px;display:block}.expense-summary-item strong{display:block;margin-top:6px;font-size:clamp(16px,2.5vw,22px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.expense-visual{display:grid;grid-template-columns: minmax(220px,.8fr) minmax(0,1.2fr);gap:14px;align-items:start}
+.expense-donut-card{min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px;background:white;border:1px solid #e2ebef;padding:14px}.expense-donut-holder{width:min(100%,272px);aspect-ratio:1;position:relative}.expense-donut-holder svg{height:100%;width:100%;overflow:visible}.expense-donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;width:63%}.expense-donut-center span{font-size:12px;color:#6e8797;display:block}.expense-donut-center b{font-size:clamp(17px,2.5vw,23px);font-variant-numeric:tabular-nums;display:block;margin:4px 0}.expense-donut-center small{font-size:11px;color:#79909b}.expense-donut-caption{font-size:11px;color:#698093;text-align:center;margin:3px 0 0}
+.expense-legend{border:1px solid #e2ebef;border-radius:14px;background:#fff;padding:9px;max-height:410px;overflow:auto}.expense-legend-item{display:grid;grid-template-columns:13px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;background:none;border:0;border-radius:9px;padding:9px;text-align:left;color:#254154}.expense-legend-item:hover,.expense-legend-item.selected{background:#e7f3f1}.expense-legend-item b{white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12px}.expense-legend-item .name{font-size:12px;display:block;overflow-wrap:anywhere}.expense-legend-item small{font-size:10px;color:#78909c}.expense-dot{width:12px;height:12px;border-radius:50%}.expense-clear{margin-top:10px;padding:8px 11px;border:1px solid #c9e0e0;background:#f0f8f7;color:#116970;border-radius:9px;font-size:12px;font-weight:800}.expense-clear[hidden]{display:none}.expense-note{padding:10px 12px;font-size:11px;color:#667e90;background:#eff5f6;margin:13px 0 0;border-radius:10px;line-height:1.6}
+.bank-data.bank-data-wide{display:block}.bank-data.bank-data-wide>div{min-width:0}.bank-expense-select{min-width:163px;max-width:235px;border:1px solid #cbdce5;border-radius:9px;background:#fff;padding:8px;color:#17485a;font-size:11px}.bank-expense-select:focus-visible{outline:3px solid #38b4ac;outline-offset:2px}.bank-note-row{font-size:10px;color:#7b92a2}.bank-expense-tag{color:#286d73;font-size:10px;font-weight:800}.bank-history .bank-table{min-width:880px}.bank-history .bank-table td:last-child{max-width:245px}.pie-empty{font-size:12px;color:#6a8190;padding:30px 8px;text-align:center}
+@media(max-width:870px){.expense-visual{grid-template-columns:1fr 1fr}.expense-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.expense-dashboard{padding:11px;margin:16px 0}.expense-dashboard-head{display:block}.expense-toggle{margin-top:12px}.expense-mode{flex:1}.expense-summary-item{padding:10px}.expense-summary-item strong{font-size:17px}.expense-visual{grid-template-columns:1fr}.expense-donut-card{min-height:230px}.expense-donut-holder{max-width:238px}.expense-legend{max-height:310px}.bank-history .bank-table{min-width:830px}}
+
+/* GIBA MEI v6 - CSS offline / sem bibliotecas externas */
+.mei-module{margin:18px 0 20px;padding:23px;overflow:hidden;scroll-margin-top:20px}
+.mei-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap}
+.mei-heading h2{font-size:23px;margin:0}.mei-heading p{color:var(--sub);font-size:12px;margin:5px 0}
+.mei-pill{background:#e6f6f2;color:#05665f;padding:7px 12px;border-radius:30px;font-size:12px;font-weight:800}
+.mei-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:18px}
+.mei-note{border-radius:12px;background:#f0f5f7;color:#446176;padding:12px 14px;font-size:12px;line-height:1.6;margin-top:13px}
+.mei-warning{background:#fff5e7;border:1px solid #efd5a8;color:#815c21}
+.mei-bad{background:#ffedef;border:1px solid #efb6bf;color:#a22c37}
+.mei-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0}
+.mei-kpi{border:1px solid #e0e9ef;border-radius:12px;background:#f8fafb;padding:15px;min-width:0}
+.mei-kpi small{display:block;color:#698095;font-size:11px;font-weight:700}.mei-kpi strong{font-size:clamp(18px,2.4vw,26px);letter-spacing:-.04em;display:block;margin:6px 0}
+.mei-kpi em{font-style:normal;color:#71869a;font-size:11px}
+.mei-progress{height:17px;background:#eaf0f4;border-radius:15px;overflow:hidden;position:relative}
+.mei-progress>div{height:100%;background:linear-gradient(90deg,#08a68d,#51c7c0);border-radius:15px;transition:width .15s ease}
+.mei-progress.warn>div{background:linear-gradient(90deg,#d58e3b,#e9b36d)}.mei-progress.danger>div{background:linear-gradient(90deg,#c43e4c,#e16e79)}
+.mei-progress-scale{display:flex;justify-content:space-between;font-size:10px;color:#8394a5;margin:6px 0 14px}
+.mei-subgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;margin-top:17px}
+.mei-panel{border:1px solid #e4ebf0;border-radius:13px;padding:16px;min-width:0}
+.mei-panel h3{font-size:16px;margin:0 0 10px}.mei-panel p{font-size:12px;color:#75889b;margin:4px 0 10px}
+.mei-tiny-legend{font-size:11px;color:#607489;padding:5px 0}
+.mei-month-row{display:grid;grid-template-columns:56px 1fr 108px 55px;align-items:center;gap:8px;font-size:11px;border-bottom:1px solid #edf1f4;padding:8px 0}
+.mei-month-row .mei-mini-bar{height:9px;background:#edf1f4;border-radius:8px;overflow:hidden}.mei-month-row .mei-mini-bar i{display:block;height:100%;background:#0e9b91;border-radius:8px}
+.mei-month-row .mei-mini-bar i.over{background:#c95157}.mei-month-row b{text-align:right;font-size:11px}
+.mei-method{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.mei-method button{border:1px solid #d4e4e8;background:#f3f8f8;padding:8px 11px;border-radius:9px;color:#125965;font-weight:750;font-size:12px}
+.mei-table-scroll{overflow-x:auto;max-height:355px;overflow-y:auto;border:1px solid #e4ebf0;border-radius:10px;margin-top:11px}
+.mei-table{min-width:690px;font-size:12px}.mei-table th,.mei-table td{padding:9px 10px}.mei-table select{max-width:150px;padding:7px 8px;background:white;border:1px solid #d5e3ea;border-radius:7px;font-size:11px}.mei-table td:nth-child(3){white-space:nowrap;font-weight:750}
+.mei-form{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:end}
+.mei-form>.wide{grid-column:span 2}.mei-form button{height:39px}
+.mei-manual-list{display:grid;gap:8px;margin:13px 0}.mei-manual-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 12px;border:1px solid #e0e9ef;border-radius:9px;font-size:12px}.mei-manual-item span{color:#63788a}
+.mei-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.mei-actions button{font-size:12px}
+.mei-checklist{display:grid;gap:6px}.mei-checklist label{display:flex;gap:9px;align-items:center;padding:7px 9px;border-radius:8px;background:#f5f8fa;font-size:12px}.mei-checklist input{accent-color:#008883;width:17px;height:17px}
+.mei-sources{font-size:11px;color:#71859a;margin-top:14px;border-top:1px solid #e4eaf0;padding-top:11px}.mei-sources a{color:#087e7f}
+@media(max-width:1000px){.mei-fields,.mei-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.mei-form{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.mei-module{padding:15px}.mei-heading h2{font-size:20px}.mei-subgrid{grid-template-columns:1fr}.mei-kpis{gap:8px}.mei-kpi{padding:10px}.mei-kpi strong{font-size:20px}.mei-month-row{grid-template-columns:45px 1fr 100px 42px;gap:5px}.mei-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.mei-form{grid-template-columns:repeat(2,minmax(0,1fr))}.mei-form>.wide{grid-column:span 2}}
+@media print{.mei-module button,.mei-form{display:none!important}}
+
+
+/* v7 — Acompanhamento de vencidos e comprovantes locais */
+.late-strip{display:none;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid #f0c2b8;background:#fff4f1;border-radius:15px;padding:15px 19px;margin:0 0 16px;box-shadow:0 3px 12px #76331916}
+.late-strip.show{display:flex}.late-strip strong{display:block;color:#9b2734;font-size:15px}.late-strip p{margin:5px 0 0;color:#805255;font-size:12px}
+.overdue-modal{z-index:70}.overdue-modal .panel{width:min(690px,100%);max-height:91dvh}.pay-modal{z-index:75}.overdue-list{display:grid;gap:9px;max-height:55dvh;overflow-y:auto;margin:16px 0}
+.overdue-item{border:1px solid #eedcdb;border-radius:13px;padding:13px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px}
+.overdue-item strong{font-size:14px}.overdue-item small{display:block;font-size:12px;color:#7d6470;margin-top:4px}.overdue-item b{display:block;margin:5px 0;color:#922e37}
+.overdue-alert-note{border-left:3px solid #d5945f;background:#fff9ed;padding:11px 13px;color:#674d25;font-size:12px;border-radius:4px}
+.overdue-modal .panel h2{color:#942c36}.overdue-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.pay-summary{border:1px solid #e5edf2;padding:11px;border-radius:10px;background:#f7fafb;margin:10px 0 14px}
+.pay-summary strong{display:block}.pay-summary small{display:block;color:#60758b;font-size:12px;margin-top:5px}
+.receipt-preview{display:none;border:1px solid #d7e3e7;border-radius:12px;padding:11px;background:#fafcfd;margin-top:10px}
+.receipt-preview.show{display:block}.receipt-preview img{max-height:230px;max-width:100%;border-radius:8px;object-fit:contain;display:block;margin:auto}
+.pay-helper{font-size:12px;color:#6c7c88;margin-top:9px}.receipt-meta{color:#507286;font-size:12px}
+#payProof[hidden]{display:none!important}.overdue-bar-summary{color:#7c3c43;font-size:12px;margin:6px 0 0}
+@media(max-width:640px){.overdue-modal .panel,.pay-modal .panel{padding:18px}.overdue-item{grid-template-columns:1fr}.overdue-actions .btn{width:100%}.overdue-list{max-height:53dvh}.late-strip .btn{width:100%}}
+
+
+/* V8 central de classificação, compacta no telefone, 100% local */
+.class-center{margin:16px 0 22px;padding:20px;scroll-margin-top:16px;border:1px solid #bcdedc;background:linear-gradient(156deg,#edf8f5,#fff 43%)}
+.class-intro{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.class-kicker{font-size:10px;font-weight:850;letter-spacing:.09em;color:#0a8581}.class-intro h2{margin:5px 0 5px;font-size:23px;color:#102e3a}.class-intro p{margin:0;color:#657d90;font-size:12px;max-width:620px;line-height:1.5}.class-pill{background:#105d61;color:white;padding:8px 12px;font-size:12px;font-weight:800;border-radius:12px;white-space:nowrap}
+.class-filter-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:17px 0 12px}.class-filter-row label{display:grid;gap:5px;color:#5f788a;font-size:11px;font-weight:750}.class-filter-row select,.class-items select{background:#fff;border:1px solid #cddfe7;border-radius:9px;color:#17394b;padding:10px;font-size:12px;min-width:0;width:100%}.class-stat{font-size:12px;color:#406377;background:#eaf4f4;padding:10px 12px;border-radius:9px;margin-bottom:11px}
+.class-items{display:grid;gap:10px}.class-item{display:grid;grid-template-columns:1fr minmax(195px,270px);gap:12px;border:1px solid #dfebeb;border-radius:13px;padding:13px 14px;background:#fff;min-width:0}.class-info{min-width:0}.class-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:7px}.class-tag{font-size:10px;font-weight:800;color:#496978;background:#edf3f6;border-radius:6px;padding:4px 7px}.class-tag.needs{background:#fff1e7;color:#965827}.class-info strong{display:block;color:#142f41;font-size:14px;overflow-wrap:anywhere}.class-info .class-amount{font-size:17px;font-weight:850;margin:5px 0 3px;display:block}.class-info .class-amount.out{color:#bb4d56}.class-info .class-amount.in{color:#087e70}.class-info small{display:block;font-size:11px;line-height:1.5;color:#73899a}.class-actions{display:flex;flex-direction:column;gap:6px}.class-actions label{font-size:10px;font-weight:800;color:#5f7888}.class-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}.class-buttons .btn{font-size:10px;padding:9px 6px;text-align:center}.class-footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:12px 0;color:#768b98;font-size:11px}.class-rules-details{border-top:1px solid #dbe9ea;padding-top:12px;font-size:12px;color:#375366}.class-rules-details summary{cursor:pointer;font-weight:800}.class-rule{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 0;border-bottom:1px solid #e4eeee}.class-rule small{display:block;color:#738a99;font-size:10px;margin-top:3px}.class-rule button{border:1px solid #d5b9b6;background:#fff;color:#a04a46;border-radius:8px;padding:7px 10px;font-weight:750}.class-check{display:flex;align-items:flex-start;gap:9px;margin:11px 0;font-size:12px;font-weight:650;color:#315267}.class-check input{width:17px;height:17px;accent-color:#087d7b;flex:none;margin-top:1px}.class-bulk-box{padding:13px;border-radius:12px;background:#eaf6f4;font-weight:750;font-size:13px;color:#155c64;margin:12px 0}.class-bulk-preview{max-height:180px;overflow:auto;border:1px solid #dce9ed;border-radius:10px;padding:8px 11px;font-size:11px}.class-bulk-row{padding:7px 0;border-bottom:1px solid #eff3f5}.class-bulk-row:last-child{border-bottom:0}.class-warning{font-size:11px!important;line-height:1.5;color:#7b6d54!important;background:#fffaef;padding:10px 12px;border-radius:8px}.class-modal .panel{max-width:630px}
+@media(max-width:800px){.class-filter-row{grid-template-columns:1fr 1fr}}
+.class-footer button[hidden]{display:none!important}
+@media(max-width:620px){.class-center{padding:12px}.class-intro{display:block}.class-pill{display:inline-block;margin-top:11px}.class-item{grid-template-columns:1fr;gap:9px}.class-actions{gap:7px}.class-buttons .btn{font-size:11px;padding:10px 7px}.class-footer{display:block}.class-footer span{display:block;margin-top:10px}.class-intro h2{font-size:20px}}
+/* V9 importação OFX e lembrete de backup */
+.backup-strip{display:none;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid #c9dcef;background:#f1f7fd;border-radius:15px;padding:13px 17px;margin:0 0 16px}.backup-strip.show{display:flex}.backup-strip strong{display:block;color:#1d4a72;font-size:14px}.backup-strip p{margin:4px 0 0;color:#4f6c86;font-size:12px}
+.ofx-modal{z-index:80}.ofx-modal .panel{width:min(640px,100%)}.ofx-info{border:1px solid #e1eaf0;background:#f7fafb;border-radius:11px;padding:11px 13px;font-size:12px;color:#466176;display:grid;gap:4px;margin-bottom:12px}.ofx-counts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.ofx-count{border:1px solid #e0e9ef;border-radius:10px;padding:10px 12px}.ofx-count small{display:block;font-size:11px;color:#677d90}.ofx-count strong{font-size:20px}.ofx-count.good{background:#ecf9f5;border-color:#b6e8d9}.ofx-count.warn{background:#fff7e9;border-color:#f1dda9}.ofx-list{max-height:170px;overflow:auto;border:1px solid #e4ebf0;border-radius:10px;padding:6px 10px;font-size:11px}.ofx-list div{padding:6px 0;border-bottom:1px solid #eef2f5}.ofx-list div:last-child{border-bottom:0}
+@media(max-width:600px){.backup-strip .btn{width:100%}}
+</style></head><body>
+<header class="top"><div class="shell"><div class="head"><div class="brand"><div class="brand-mark">G</div><div><strong>GIBA Soluções</strong><small>PAINEL FINANCEIRO</small></div></div><span class="offline">Offline · Dados locais</span></div><div class="hero"><div><p class="eyebrow">Controle financeiro</p><h1>Suas contas. Sua meta.<br>Seu próximo mês.</h1><p>Boletos, cartões e empréstimos organizados, com uma meta de faturamento ajustada à realidade do negócio.</p></div><div class="hero-right"><button class="btn dark" id="exportBackup">↓ Backup JSON</button><button class="btn dark" id="exportCsv">↓ CSV</button><button class="btn primary" id="ofxBtn">↑ Extrato OFX</button><button class="btn dark" id="importBtn">↑ Restaurar backup</button><input type="file" accept="application/json,.json" id="importFile" hidden><input type="file" id="ofxFile" hidden></div></div></div></header>
+<main class="shell main">
+<section id="pwaDataGuide" class="card" style="background:#fff9eb;border:1px solid #e9d49a;margin-bottom:15px;padding:17px;display:none">
+<strong style="font-size:16px">Seus dados financeiros ainda não foram importados</strong>
+<p style="font-size:13px;color:#705b24">Este PWA foi publicado sem dados bancários por segurança. Toque em <b>Importar dados</b> e selecione o arquivo <code>GIBA_Financeiro_Dados_Privados_Importar.json</code>, recebido separadamente. Depois, os lançamentos ficam salvos neste aparelho e disponíveis offline.</p>
+<button type="button" class="btn primary" id="initialImport">↑ Restaurar backup JSON</button> <button type="button" class="btn light" id="initialOfx">↑ Importar extrato OFX do banco</button>
+</section>
+<section class="late-strip" id="lateStrip" role="status" aria-live="polite"><div><strong id="lateStripTitle">Contas vencidas em aberto</strong><p id="lateStripDesc">Revise suas pendências de todos os meses.</p></div><button class="btn danger" id="openLateList" type="button">Ver pendências e baixar</button></section>
+<section class="backup-strip" id="backupStrip" role="status"><div><strong id="backupStripTitle">Faça um backup</strong><p id="backupStripDesc"></p></div><button class="btn primary" id="backupNow" type="button">↓ Fazer backup agora</button></section>
+<div id="pwaInstallGuide" class="card" style="background:#eff9f7;border:1px solid #cbe4df;padding:14px 16px;margin-bottom:15px;display:none">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="flex:1;font-size:13px">Instale o GIBA Financeiro para abrir como aplicativo e usar offline.</span><button type="button" class="btn primary sm" id="installPWA">Instalar aplicativo</button><button type="button" class="btn light sm" id="dismissInstall">Agora não</button></div>
+</div><section class="card controls"><div><div class="label">Mês em análise</div><div class="month-controls"><button class="icon-btn" id="prevMonth" aria-label="Mês anterior">‹</button><input id="monthPick" type="month" min="2026-01" max="2035-12" aria-label="Selecionar mês"><button class="icon-btn" id="nextMonth" aria-label="Mês seguinte">›</button></div></div><div class="actions"><a class="btn light" href="#meiPainel">◉ MEI: teto e declaração</a><a class="btn light" href="#painelGastos">◉ Gastos por categoria</a><a class="btn primary" href="#centralClassificacao" id="classTopBtn">◈ Classificar <span id="classTopCount">0</span></a><span class="chip" id="recordsCount">Lançamentos a importar</span><button class="btn light" id="goCurrent">Mês atual</button><button class="btn primary" id="addBtn">+ Nova conta</button></div></section>
+<section class="kpis" aria-live="polite"><div class="card kpi"><div class="topline"><i class="dot dark"></i> Contas do mês</div><div class="value" id="kpiTotal">—</div><div class="hint" id="kpiCount">— lançamentos previstos</div></div><div class="card kpi"><div class="topline"><i class="dot warn"></i> Em aberto</div><div class="value" id="kpiOpen">—</div><div class="hint" id="kpiOverdue">Pendentes + sem data confirmada</div></div><div class="card kpi"><div class="topline"><i class="dot green"></i> Já marcado como pago</div><div class="value" id="kpiPaid">—</div><div class="hint">Atualize cada conta ao pagar</div></div><div class="card kpi major"><div class="topline"><i class="dot green"></i> Meta de faturamento</div><div class="value" id="kpiGoal">—</div><div class="hint">Ajustável no simulador abaixo</div></div></section>
+
+
+<section class="card mei-module" id="meiPainel" aria-labelledby="meiTitle">
+ <div class="mei-heading"><div><h2 id="meiTitle">◉ Controle do MEI · Receita bruta</h2><p>Acompanhamento fiscal separado de saldo bancário, despesas e lucro. Dados locais e privados.</p></div><span class="mei-pill">Regra vigente em 2026: R$ 81.000/ano</span></div>
+ <div class="mei-fields">
+  <label class="field">Ano-calendário<select id="meiYear"><option value="2025">2025</option><option value="2026" selected>2026</option><option value="2027">2027 (conferir: PLP 186/2026)</option><option value="2028">2028 (conferir regra)</option><option value="2029">2029 (conferir regra)</option></select></label>
+  <label class="field">Data de abertura do MEI<input id="meiOpening" type="date" aria-describedby="meiOpeningHelp"></label>
+  <label class="field">Limite anual de referência (R$)<input id="meiLimit" type="number" min="1" step="100" value="81000"></label>
+  <label class="field">Empregado no ano?<select id="meiEmployee"><option value="unknown">Ainda não conferido</option><option value="no">Não</option><option value="yes">Sim</option></select></label>
+ </div>
+ <div id="meiOpeningHelp" class="mei-note">Informe a data de abertura para calcular o limite proporcional se o MEI começou durante o ano. Sem a data, o sistema usa apenas o teto anual de referência, não confirma o limite legal individual.</div>
+ <div class="mei-kpis" aria-live="polite">
+   <div class="mei-kpi"><small>Receita reconhecida no painel</small><strong id="meiRevenue">R$ 0,00</strong><em id="meiEvidence">Conferir extratos e vendas fora do banco</em></div>
+   <div class="mei-kpi"><small>Teto aplicável no ano</small><strong id="meiMax">R$ 81.000,00</strong><em id="meiPercent">0% utilizado</em></div>
+   <div class="mei-kpi"><small>Falta até o teto</small><strong id="meiLeft">—</strong><em id="meiRemainPct">—</em></div>
+   <div class="mei-kpi"><small>Referência de faturamento/mês</small><strong id="meiAvg">—</strong><em>Não é limite legal por mês</em></div>
+ </div>
+ <div class="mei-progress" id="meiProgress"><div id="meiProgressBar" style="width:0%"></div></div><div class="mei-progress-scale"><span>0%</span><span>70% · Atenção</span><span>85% · Cuidado</span><span>100% · Teto</span></div>
+ <div id="meiRisk" class="mei-note mei-warning" aria-live="polite">Importe seus dados e confirme as receitas.</div>
+ <div class="mei-subgrid">
+ <div class="mei-panel"><h3>Receita mês a mês</h3><p>O gráfico mostra valores reconhecidos. Se houver receitas não lançadas, o resultado está incompleto.</p><div id="meiMonths"></div></div>
+ <div class="mei-panel"><h3>Projeção, revisão e pendências</h3><div id="meiInsights"></div><div class="mei-note">O alerta de 120% é <b>risco de desenquadramento retroativo</b>, não uma autorização para faturar até esse valor. Consulte um contador se houver excesso.</div></div>
+ </div>
+ <div class="mei-subgrid">
+  <div class="mei-panel"><h3>Conciliação de receitas nos extratos</h3><p>Entram na receita provisória os créditos da empresa marcados como <b>serviço confirmado</b> e os créditos da conta pessoal marcados como <b>serviço da GIBA recebido na conta pessoal</b>. Pix pessoal, empréstimos, estornos e outros créditos ficam de fora. Informe o documento fiscal para preparar a declaração.</p>
+   <div class="mei-tiny-legend" id="meiBankSummary">Aguardando classificação de receitas.</div>
+   <div class="mei-table-scroll"><table class="mei-table"><thead><tr><th>Data e origem</th><th>Tipo de receita</th><th>Valor</th><th>Nota fiscal?</th><th>Inclui no MEI?</th></tr></thead><tbody id="meiBankRows"></tbody></table></div>
+  </div>
+  <div class="mei-panel"><h3>Adicionar faturamento fora do extrato</h3><p>Registre vendas em dinheiro, faturamento não representado no extrato ou outras receitas brutas que faltam. <b>Não repita Pix já conciliados.</b></p>
+    <form class="mei-form" id="meiRevenueForm">
+      <label class="field">Data<input id="meiManualDate" type="date" required></label>
+      <label class="field">Valor bruto (R$)<input id="meiManualAmount" type="number" min="0.01" step="0.01" required></label>
+      <label class="field">Natureza<select id="meiManualKind"><option value="servicos">Serviços</option><option value="comercio">Comércio</option><option value="industria">Indústria</option></select></label>
+      <label class="field">Documento fiscal<select id="meiManualNF"><option value="unknown">A conferir</option><option value="yes">Com nota</option><option value="no">Sem nota / dispensa</option></select></label>
+      <label class="field wide">Referência / cliente (opcional)<input id="meiManualNote" maxlength="130" placeholder="Ex.: serviço pago em dinheiro"></label>
+      <button type="submit" class="btn primary">+ Adicionar</button>
+    </form>
+    <div class="mei-manual-list" id="meiManualList"></div>
+  </div>
+ </div>
+ <div class="mei-subgrid">
+ <div class="mei-panel"><h3>Entradas e saídas para declaração</h3><p>A receita é <b>bruta</b>: gasolina, almoço e materiais não reduzem o valor declarado. As saídas são exibidas somente para controle gerencial e guarda dos comprovantes.</p><div id="meiDeclarationTotals"></div></div>
+ <div class="mei-panel"><h3>Preparação da DASN-SIMEI</h3><p>Gere um resumo anual e os relatórios mensais para conferência. <b>Não envia nada à Receita Federal.</b></p>
+ <div class="mei-fields" style="grid-template-columns:1fr 1fr"><label class="field">Mês para relatório<select id="meiReportMonth"></select></label><label class="field">Controle de documentos<input id="meiDocumentNote" placeholder="Ex.: notas conferidas" maxlength="80"></label></div>
+ <div class="mei-actions"><button class="btn primary" type="button" id="meiPrintMonth">↓ Relatório mensal (.html)</button><button class="btn light" type="button" id="meiPrintYear">↓ Prévia DASN anual (.html)</button><button class="btn light" type="button" id="meiExportCsv">↓ Receitas do ano (.csv)</button></div>
+ <h3 style="margin-top:16px">Conferência de cada mês</h3><p>Marque apenas após conferir vendas, Pix, dinheiro e notas. A informação fica salva no dispositivo.</p><div class="mei-checklist" id="meiReviewMonths"></div><div class="mei-note" id="meiReadyStatus"></div>
+ </div>
+ </div>
+ <div class="mei-sources">Fontes oficiais (consulta necessária antes de declarar): <a href="https://www.gov.br/memp/pt-br/teto-do-mei" target="_blank" rel="noopener noreferrer">Teto MEI</a> · <a href="https://www.gov.br/empresas-e-negocios/pt-br/empreendedor/servicos-para-mei/relatorio-mensal/relatorio-mensal-de-receitas-brutas" target="_blank" rel="noopener noreferrer">Relatório mensal</a> · <a href="https://www.gov.br/pt-br/servicos/declarar-receita-bruta-anual-para-o-mei" target="_blank" rel="noopener noreferrer">Enviar DASN-SIMEI</a>. Atualização das regras consultada em outubro/2026. Relatório mensal até o dia 20 do mês seguinte; DASN anual até 31 de maio do ano seguinte (salvo mudanças oficiais).</div>
+</section>
+
+<section class="card class-center" id="centralClassificacao" aria-label="Central de classificação de movimentações">
+ <div class="class-intro"><div><span class="class-kicker">CONTROLE DE ENTRADAS E SAÍDAS</span><h2>◈ Lançamentos para identificar</h2><p>Confira quem recebeu ou enviou o dinheiro, escolha uma categoria e salve. As sugestões automáticas <strong>não equivalem a uma conferência</strong>.</p></div><div class="class-pill" id="classPendingBadge">—</div></div>
+ <div class="class-filter-row">
+  <label>Conta<select id="classAccount"><option value="all">Pessoal + Empresa</option><option value="pj">Empresa</option><option value="pf">Pessoal</option></select></label>
+  <label>Movimento<select id="classDirection"><option value="all">Entradas e saídas</option><option value="out">Somente saídas</option><option value="in">Somente entradas</option></select></label>
+  <label>Mês<select id="classMonth"><option value="all">Todos os meses</option></select></label>
+  <label>Mostrar<select id="classReview"><option value="urgent">Sem identificação clara</option><option value="all">Todos sem conferência</option></select></label>
+ </div>
+ <div id="classStat" class="class-stat" aria-live="polite">Importe seu backup privado para começar.</div>
+ <div id="classItems" class="class-items"></div>
+ <div class="class-footer"><button type="button" class="btn light" id="classMore" hidden>Mostrar mais lançamentos</button><span>Aplicação em lote nunca sobrescreve classificações manuais já conferidas. Dados e regras ficam no aparelho.</span></div>
+ <details class="class-rules-details"><summary>Regras automáticas salvas <b id="classRuleCount">0</b></summary><div id="classRules"></div></details>
+</section>
+<section class="card section bank-hero" id="saldosBancarios">
+ <div class="bank-head"><div><h2>Extratos por conta</h2><p>Entradas e saídas por conta, mês e categoria</p></div><span class="tag">DADOS IMPORTADOS</span></div>
+ <div class="bank-switch" id="bankTabs" role="group" aria-label="Conta exibida"><button type="button" class="bank-tab active" data-banktab="pj" aria-pressed="true">🏢 Empresa</button><button type="button" class="bank-tab" data-banktab="pf" aria-pressed="false">👤 Pessoal</button></div>
+ <div class="bank-grid"><div class="bank-card primary-bank"><small id="bankSaldoLabel">Empresa · saldo a importar</small><strong id="bankSelectedBalance" class="positive">—</strong><span id="bankBalanceDesc">Conta empresarial, sem compensar saldo pessoal</span></div><div class="bank-card"><small>Entradas bancárias da conta no período total</small><strong id="bankHistoricalIncome">—</strong><span>Créditos no extrato, não necessariamente faturamento</span></div><div class="bank-card"><small>Saídas bancárias da conta no período total</small><strong id="bankHistoricalExpense">—</strong><span>Inclui transferências e pagamentos de cartões</span></div></div>
+ <div class="bank-banner" id="bankAccountBanner">Pix pessoais identificados ficam fora da receita de serviços.</div>
+ <div class="recovery" id="personalRecovery"><label class="recovery-row"><input id="recoverEnabled" type="checkbox" checked> Simular recomposição do limite pessoal</label><div class="recovery-controls"><label class="field">Saldo do limite a recuperar (R$)<input type="number" min="0" step="50" id="recoverBalance" inputmode="decimal" value="0"></label><label class="field">Meses para recuperar<input type="number" min="1" max="60" id="recoverMonths" value="6" inputmode="numeric"></label><label class="field">Começar em<input type="month" id="recoverStart"></label></div><p class="recovery-result"><strong id="recoverMonthly">—</strong> /mês <span id="recoverWindow">—</span></p><p class="footnote">Meta de recuperação do limite da conta pessoal incluída no simulador consolidado, mesmo quando a aba Empresa estiver selecionada. Não é uma parcela contratual; juros futuros não estão incluídos.</p></div>
+</section>
+<section class="card section bank-history" id="historicoBancario"><div class="bank-head"><div><h2 id="bankHistoryTitle">Movimentações da empresa</h2><p>Histórico bancário privado, disponível após importar dados</p></div><div class="bank-filters"><select id="bankMonth" aria-label="Mês do extrato"><option value="all">Período completo</option></select></div></div>
+<div class="bank-stats"><div class="bank-stat"><small>Entradas na conta</small><strong id="bankIncome">—</strong></div><div class="bank-stat"><small>Saídas na conta</small><strong id="bankExpense">—</strong></div><div class="bank-stat"><small>Variação líquida</small><strong id="bankNet">—</strong></div><div class="bank-stat"><small>Movimentações</small><strong id="bankCount">—</strong></div></div>
+<div class="classification-zone" id="pjClassificationZone"><h3>Receitas da GIBA · classificação de entradas</h3><div class="bank-stats"><div class="bank-stat highlight-personal"><small>Pix pessoais excluídos</small><strong id="pjPersonalAmount">—</strong><span id="pjPersonalCount">—</span></div><div class="bank-stat"><small>Serviços confirmados por você</small><strong id="pjServiceAmount">—</strong><span id="pjServiceCount">—</span></div><div class="bank-stat"><small>Entradas a confirmar</small><strong id="pjPendingAmount">—</strong><span id="pjPendingCount">—</span></div><div class="bank-stat"><small>Estornos e ajustes / outras entradas</small><strong id="pjOtherAmount">—</strong><span id="pjOtherCount">—</span></div></div><p class="bank-note">O total de recebimentos de serviços só aumenta quando você marca um crédito como <b>Serviço confirmado</b>. Créditos de pessoas identificadas no arquivo privado são classificados automaticamente como pessoais e não podem ser marcados como serviço. Estornos e créditos revertidos não contam como receita.</p></div>
+<div class="bank-banner" id="bankFlowNote">Transferências entre contas próprias não representam faturamento de serviços.</div>
+<section class="expense-dashboard" id="painelGastos" aria-label="Gerenciador de gastos">
+<div class="expense-dashboard-head"><div><h3>Para onde está indo o dinheiro?</h3><p id="expenseScope">Empresa · outubro/2026</p><p>Categoria por mês e por conta · toque numa categoria para filtrar lançamentos</p></div><div class="expense-toggle" id="expenseMode" role="group" aria-label="Tipo de gasto exibido"><button type="button" class="expense-mode active" data-expensemode="consumption">Gastos por categoria</button><button type="button" class="expense-mode" data-expensemode="all">Todas as saídas</button></div></div>
+<div class="expense-summary-grid"><div class="expense-summary-item"><small>Combustível</small><strong id="sumFuel">—</strong></div><div class="expense-summary-item"><small>Alimentação + mercado</small><strong id="sumFood">—</strong></div><div class="expense-summary-item"><small>Materiais e fornecedores</small><strong id="sumMaterials">—</strong></div><div class="expense-summary-item"><small>Para revisar</small><strong id="sumReview">—</strong></div></div>
+<div class="expense-visual"><div class="expense-donut-card"><div class="expense-donut-holder"><svg id="bankDonut" viewBox="0 0 260 260" role="img" aria-label="Distribuição dos gastos por categoria"><circle cx="130" cy="130" r="87" fill="none" stroke="#e9eef2" stroke-width="35"/></svg><div class="expense-donut-center"><span id="donutTitle">Gastos</span><b id="donutTotal">—</b><small id="donutCount">—</small></div></div><p class="expense-donut-caption" id="donutSubtitle">Extrato da conta e mês selecionados</p></div><div class="expense-legend"><div id="bankCategories" aria-live="polite"></div><button type="button" class="expense-clear" id="clearExpenseFilter" hidden>✕ Limpar filtro de categoria</button></div></div>
+<p class="expense-note" id="expenseFootnote">As categorias são sugeridas pelo nome do estabelecimento. Revise os lançamentos quando o extrato não permitir saber o que foi comprado. Pagamentos de cartão não são novamente somados aos gastos detalhados do cartão.</p></section>
+<div class="bank-data bank-data-wide"><div><div class="sec-head" style="margin-bottom:8px"><h3 class="bank-sub" style="margin:0">Histórico — conta selecionada</h3><button class="btn light sm" id="exportBankCsv">↓ CSV desta conta</button></div><div class="table-scroll"><table class="bank-table"><thead><tr><th>Data</th><th>Lançamento</th><th>Valor</th><th>Classificação / ajustar</th></tr></thead><tbody id="bankTransactions"></tbody></table></div><p class="bank-legend" id="bankListNote">—</p><button class="btn light sm" id="loadMoreBank" type="button" hidden>Mostrar mais 35 movimentações</button></div></div><p class="bank-privacy">Extratos importados por arquivo (backup JSON ou OFX do banco), sem conexão direta com o banco. Os nomes do extrato são informações pessoais: não compartilhe esse HTML. As classificações manuais são salvas no navegador e vão para o backup JSON.</p>
+</section>
+
+<div class="twocol"><section class="card section" id="simulador"><div class="sec-head"><div><h2>Meta de faturamento consolidada</h2><p>Planejamento da operação e contas pessoais; cada conta bancária é exibida separadamente abaixo.</p></div><span class="tag">SIMULADOR</span></div><div class="target-main"><div><small>Meta bruta calculada no mês</small><strong id="goalBig">—</strong><span id="goalHelper">—</span></div><div class="target-side"><small>Por dia de trabalho</small><br><b id="goalDaily">—</b></div></div><div class="expense-box"><div class="expense-head"><strong>Despesas de campo</strong><small>Já incluídas na meta mensal</small></div><div class="expense-fields"><label class="field">Gasolina por semana (R$)<input type="number" min="0" step="10" inputmode="decimal" id="fuelWeekly" value="400"></label><label class="field">Almoço por dia trabalhado (R$)<input type="number" min="0" step="5" inputmode="decimal" id="lunchDaily" value="60"></label></div><div class="expense-summary" aria-live="polite"><div class="expense-line"><span>Gasolina (média de 52 semanas ÷ 12 meses)</span><b id="fuelMonth">—</b></div><div class="expense-line"><span>Almoço (<span id="daysShown">22</span> dias trabalhados)</span><b id="lunchMonth">—</b></div><div class="expense-line expense-total"><span>Despesas de campo / mês</span><b id="fieldTotal">—</b></div></div></div><div class="calc-grid"><label class="field">Despesas pessoais / mês (R$)<input type="number" min="0" step="50" inputmode="decimal" id="personal" value="0"></label><label class="field">Custos fixos da empresa (R$)<input type="number" min="0" step="50" inputmode="decimal" id="business" value="0"></label><label class="field">Reserva adicional (R$)<input type="number" min="0" step="50" inputmode="decimal" id="extra" value="0"></label><label class="field">Custos variáveis sobre vendas (%)<input type="number" min="0" max="99" step="1" inputmode="decimal" id="variable" value="0"></label><label class="field">Impostos sobre faturamento (%)<input type="number" min="0" max="99" step=".5" inputmode="decimal" id="tax" value="0"></label><label class="field">Reserva sobre faturamento (%)<input type="number" min="0" max="99" step="1" inputmode="decimal" id="reserve" value="0"></label><label class="field">Dias de trabalho / mês<input type="number" min="1" max="31" step="1" inputmode="numeric" id="days" value="22"></label><label class="field">Já faturado neste mês (R$)<input type="number" min="0" step="50" inputmode="decimal" id="earned" value="0"></label><label class="field">Falta faturar para a meta<input type="text" id="remaining" value="—" disabled></label></div><div id="invalidCosts" class="error" hidden>Custos variáveis, impostos e reserva somam 100% ou mais. Reduza os percentuais para calcular uma meta possível.</div><p class="footnote">Fórmula: <b>(contas do mês + gasolina semanal × 52/12 + almoço diário × dias trabalhados + despesas pessoais + custos fixos + reserva adicional + recomposição do limite se ativada) ÷ [1 − (custos variáveis + impostos + reserva %)].</b> O lucro de cada serviço e a tributação real podem ser diferentes; revise os percentuais. Não repita gasolina ou almoço no campo de custos fixos, para evitar duplicidade.</p><div class="warning" id="baselineWarning">Os custos desconhecidos começam zerados. A meta inicial é apenas o mínimo teórico para cobrir as contas cadastradas, não uma projeção completa do seu negócio.</div></section>
+<section class="card section"><div class="sec-head"><div><h2>Visão das dívidas (total)</h2><p>Despesas ainda não atribuídas a uma conta não foram presumidas como PJ ou PF.</p></div></div><div class="legend"><span><i style="background:#19aa8d"></i>Pago</span><span><i style="background:#e19e63"></i>Em aberto</span></div><div class="meter" role="img" id="meter" aria-label="Proporção de valores pagos e em aberto"><div class="paid" id="paidBar" style="width:0%"></div><div class="open" id="openBar" style="width:100%"></div></div><div class="row-pair"><span>Boletos e notas</span><b id="catBoletos">—</b></div><div class="row-pair"><span>Cartões (faturas integrais)</span><b id="catCartoes">—</b></div><div class="row-pair"><span>Empréstimos</span><b id="catLoans">—</b></div><div class="row-pair"><span>Outras contas</span><b id="catOther">—</b></div><div class="row-pair"><span>Compromissos futuros cadastrados</span><b id="remainingFuture">—</b></div><div class="row-pair"><span>Datas ou valores estimados</span><b id="uncertain">—</b></div><div class="sec-head" style="margin-top:23px;margin-bottom:5px"><div><h2 style="font-size:16px">Próximos 6 meses</h2><p>Toque no mês para abrir os detalhes.</p></div></div><div class="period-list" id="periodList"></div></section></div>
+<section class="card list-card"><div class="list-head"><div><h2>Contas e vencimentos</h2><p style="margin:4px 0 0;color:#7a8c9f;font-size:12px">Use “Editar” para atribuir cada dívida à conta pessoal ou empresarial. O filtro altera a lista, não a meta consolidada.</p></div><div class="filters"><select id="debtAccount" aria-label="Filtrar obrigações por conta"><option value="all">Todas as contas</option><option value="pj">Somente empresa</option><option value="pf">Somente pessoal</option><option value="unassigned">Conta a definir</option></select><button class="filter on" data-filter="all">Todos</button><button class="filter" data-filter="pending">Em aberto</button><button class="filter" data-filter="paid">Pagos</button><select id="category" aria-label="Filtrar categoria"><option value="all">Todas as categorias</option><option>Boleto</option><option>Nota fiscal</option><option>Cartão</option><option>Empréstimo</option><option>Outros</option></select></div></div><div class="table-scroll"><table><thead><tr><th>Vencimento</th><th>Descrição</th><th>Categoria</th><th>Conta</th><th>Situação</th><th style="text-align:right">Valor</th><th style="text-align:right">Ações</th></tr></thead><tbody id="debts"></tbody></table></div><div class="bottom"><span id="tableSummary">—</span><span>As faturas incluem as compras detalhadas nas capturas. Não lance compras internas novamente.</span></div></section>
+
+<footer class="footer">GIBA Soluções · Painel financeiro offline v9 · <b>Os dados ficam neste dispositivo/navegador.</b> Exporte um backup periodicamente. Agenda Google não sincronizada automaticamente.</footer></main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><form class="panel" id="debtForm"><h2 id="modalTitle">Nova conta</h2><p>Cadastre uma obrigação ou edite um lançamento já existente.</p><div class="modal-grid"><label class="field wide">Descrição<input id="fName" required maxlength="160" placeholder="Ex.: Compra de materiais"></label><label class="field">Valor (R$)<input id="fAmount" type="number" step="0.01" min="0.01" required inputmode="decimal"></label><label class="field">Conta responsável<select id="fAccount"><option value="unassigned">A definir</option><option value="pj">Empresa</option><option value="pf">Pessoal</option></select></label><label class="field">Categoria<select id="fCategory"><option>Boleto</option><option>Nota fiscal</option><option>Cartão</option><option>Empréstimo</option><option>Outros</option></select></label><label class="field">Data do vencimento<input id="fDate" type="date"></label><label class="field">Mês de referência<input id="fMonth" type="month" required></label><label class="field">Situação<select id="fStatus"><option value="pending">Em aberto</option><option value="paid">Pago</option></select></label><label class="field">Tipo de data<select id="fConfidence"><option value="confirmed">Confirmada</option><option value="estimate">Estimada / confirmar</option></select></label><label class="field wide">Observações<textarea id="fNote" rows="3" placeholder="Número do documento, detalhes, etc."></textarea></label></div><div class="modal-buttons"><button type="button" class="btn danger" id="deleteRecord" hidden>Excluir</button><span style="flex:1"></span><button type="button" class="btn light" id="cancel">Cancelar</button><button type="submit" class="btn primary">Salvar conta</button></div></form></div>
+<div class="modal overdue-modal" id="overdueModal" role="dialog" aria-modal="true" aria-labelledby="overdueTitle" aria-describedby="overdueIntro">
+ <div class="panel"><h2 id="overdueTitle">⚠ Pagamentos vencidos em aberto</h2><p id="overdueIntro">Atenção: há contas com vencimento anterior a hoje ainda sem baixa no painel. Confirme o pagamento ou anexe uma foto.</p>
+ <div id="overdueTotal" class="overdue-alert-note"></div><div id="overdueList" class="overdue-list"></div>
+ <div class="modal-buttons"><button class="btn light" type="button" id="closeLate">Ver depois (avisar na próxima abertura)</button><button class="btn primary" type="button" id="goLateTable">Ir para contas e vencimentos</button></div>
+ </div>
+</div>
+<div class="modal pay-modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+ <form class="panel" id="payForm"><h2 id="payTitle">Dar baixa no pagamento</h2><p>Informe a data real em que pagou. O comprovante é opcional, mas recomendado para manter um histórico verificável.</p>
+ <div id="paySummary" class="pay-summary"></div>
+ <div class="modal-grid"><label class="field">Data em que foi pago<input type="date" id="payDate" required></label><label class="field">Comprovante (foto)<input type="file" id="payProof" accept="image/jpeg,image/png,image/webp" aria-describedby="proofHelp"></label></div>
+ <div class="pay-helper" id="proofHelp">A foto fica somente neste aparelho, sem envio para servidores. Máximo de 8 MB por arquivo. Exportar backup incluirá o comprovante.</div>
+ <div id="receiptPreview" class="receipt-preview"></div><div class="receipt-meta" id="proofSelected" aria-live="polite"></div>
+ <div class="modal-buttons"><button type="button" class="btn light" id="payCancel">Cancelar</button><button type="submit" class="btn primary" id="paySave">Confirmar pagamento e salvar</button></div>
+ </form>
+</div>
+
+
+<div class="modal class-modal" id="classBulkModal" role="dialog" aria-modal="true" aria-labelledby="classBulkTitle">
+ <div class="panel"><h2 id="classBulkTitle">Aplicar classificação em lote</h2><p id="classBulkDescription"></p>
+ <label class="class-check"><input type="checkbox" id="classBothAccounts"> Incluir também a outra conta, se houver o mesmo estabelecimento/pessoa e o mesmo tipo de movimento</label>
+ <div class="class-bulk-box" id="classBulkSummary" aria-live="polite"></div>
+ <div class="class-bulk-preview" id="classBulkPreview"></div>
+ <label class="class-check"><input type="checkbox" id="classSaveRule" checked> <span id="classSaveRuleText">Lembrar esta regra para novos extratos</span></label>
+ <p class="class-warning">O nome deve corresponder exatamente após normalização. Não mistura entradas com saídas e não substitui classificações já revisadas. Confira se os pagamentos desse estabelecimento têm sempre a mesma finalidade.</p>
+ <div class="modal-buttons"><button type="button" class="btn light" id="classBulkCancel">Cancelar</button><button type="button" class="btn primary" id="classBulkConfirm">Aplicar classificação</button></div>
+ </div>
+</div>
+<div class="modal ofx-modal" id="ofxModal" role="dialog" aria-modal="true" aria-labelledby="ofxTitle">
+ <div class="panel"><h2 id="ofxTitle">Importar extrato OFX</h2><p>Os lançamentos novos são <b>somados</b> aos que já existem. Repetidos são ignorados e as classificações já feitas são mantidas.</p>
+ <div class="ofx-info" id="ofxInfo"></div>
+ <label class="field">Este extrato é de qual conta?<select id="ofxAccount"><option value="pj">🏢 Empresa</option><option value="pf">👤 Pessoal</option></select></label>
+ <div class="ofx-counts" id="ofxCounts"></div>
+ <div id="ofxSuspectBox" hidden><label class="class-check"><input type="checkbox" id="ofxIncludeSuspect"> <span>Importar também os <b id="ofxSuspectN">0</b> possíveis repetidos abaixo (marque só se tiver certeza de que são movimentações diferentes)</span></label><div class="ofx-list" id="ofxSuspectList"></div></div>
+ <p class="class-warning" id="ofxNote"></p>
+ <div class="modal-buttons"><button type="button" class="btn light" id="ofxCancel">Cancelar</button><button type="button" class="btn light" id="ofxBackupFirst">↓ Backup antes</button><button type="button" class="btn primary" id="ofxConfirm">Importar</button></div>
+ </div>
+</div>
+<div class="alert" id="toast" role="status"></div>
+<script>
+'use strict';
+let bankSeed=[];
+const seed=[];
+const KEY='giba-financeiro-pwa-private-v1';
+const money=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const monthly=new Intl.DateTimeFormat('pt-BR',{month:'short',year:'numeric',timeZone:'UTC'});
+const datefmt=new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',timeZone:'UTC'});
+const $=id=>document.getElementById(id);
+const safeText=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const defaultPrefs=()=>({personal:0,business:0,extra:0,variable:0,tax:0,reserve:0,days:22,fuelWeekly:0,lunchDaily:0,recoverEnabled:true,recoverBalance:0,recoverMonths:6,recoverStart:'',lastBackup:'',earned:{},bankOverrides:{},bankDebitOverrides:{},bankReviewed:{},bankCreditDetails:{},bankRules:[],personalNames:[],reversedCredits:[],bankMeta:{},mei:{year:2026,opening:'',limit:81000,employee:'unknown',manual:[],bankDetails:{},reviewed:{},documentNote:''}});
+let persisted=null;try{persisted=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){}
+let data=Array.isArray(persisted?.items)?persisted.items:seed.map(x=>({...x}));
+bankSeed=Array.isArray(persisted?.bankSeed)?persisted.bankSeed:[];
+data.forEach(x=>{if(!['pf','pj','unassigned'].includes(x.account))x.account=String(x.id||'').startsWith('loan-')?'pf':'unassigned';});
+let prefs={...defaultPrefs(),...(persisted?.prefs||{})};
+if(!prefs.bankOverrides||typeof prefs.bankOverrides!=='object'||Array.isArray(prefs.bankOverrides))prefs.bankOverrides={};
+if(!prefs.bankDebitOverrides||typeof prefs.bankDebitOverrides!=='object'||Array.isArray(prefs.bankDebitOverrides))prefs.bankDebitOverrides={};
+function normalizeClassPrefs(){if(!prefs.bankReviewed||typeof prefs.bankReviewed!=='object'||Array.isArray(prefs.bankReviewed))prefs.bankReviewed={};if(!prefs.bankCreditDetails||typeof prefs.bankCreditDetails!=='object'||Array.isArray(prefs.bankCreditDetails))prefs.bankCreditDetails={};if(!Array.isArray(prefs.bankRules))prefs.bankRules=[];}
+normalizeClassPrefs();
+let bankAccount='pj';
+let bankVisible=35;
+let expenseMode="consumption",expenseFilter="all";
+/* V9: o código de cada movimentação é gravado uma única vez e nunca recalculado pela posição. */
+function ensureTxIds(){const used=new Set(bankSeed.map(x=>x.txid).filter(Boolean)),seen=new Set();bankSeed.forEach((x,i)=>{if(x.txid&&!seen.has(x.txid)){seen.add(x.txid);return}let id='bk-'+i;while(used.has(id)||seen.has(id))id+='b';x.txid=id;seen.add(id);used.add(id);});}
+ensureTxIds();
+let filter='all',editingId=null,backupDirty=false,bankMonthTouched=false;
+const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
+let month=today().slice(0,7);
+function save(){try{localStorage.setItem(KEY,JSON.stringify({version:2,items:data,bankSeed,prefs}));return true}catch(e){$('baselineWarning').textContent='Este navegador não permitiu salvar os dados automaticamente. Exporte um backup JSON para não perder as alterações.';return false}}
+
+/* Comprovantes privados (IndexedDB). Não há envio à rede. */
+const RECEIPT_DB='giba-financeiro-comprovantes-v1';let receiptDbPromise=null;
+function receiptDB(){if(!('indexedDB' in window))return Promise.reject(Error('O navegador não permite armazenar comprovantes.'));
+ if(!receiptDbPromise)receiptDbPromise=new Promise((resolve,reject)=>{const rq=indexedDB.open(RECEIPT_DB,1);rq.onupgradeneeded=()=>{if(!rq.result.objectStoreNames.contains('receipts'))rq.result.createObjectStore('receipts',{keyPath:'id'})};rq.onsuccess=()=>resolve(rq.result);rq.onerror=()=>reject(rq.error||Error('Falha na abertura do banco de comprovantes'));}).catch(e=>{receiptDbPromise=null;throw e});return receiptDbPromise;
+}
+async function receiptOp(mode,verb,obj){const db=await receiptDB();return new Promise((resolve,reject)=>{const tx=db.transaction('receipts',mode),os=tx.objectStore('receipts');const req=os[verb](obj);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||Error('Falha ao guardar comprovante'));tx.onabort=()=>reject(tx.error||Error('Falha no armazenamento'));});}
+function receiptGet(id){return receiptOp('readonly','get',id)}
+function receiptPut(item){return receiptOp('readwrite','put',item)}
+function receiptDelete(id){return receiptOp('readwrite','delete',id)}
+function blobDataURL(blob){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>resolve(fr.result);fr.onerror=()=>reject(fr.error);fr.readAsDataURL(blob)})}
+function dataURLBlob(src){const [head,body]=src.split(',');const mime=head.match(/^data:([^;]+);base64$/)?.[1];if(!mime||!/^image\/(jpeg|png|webp)$/.test(mime))throw Error('Formato de imagem não permitido');const raw=atob(body),arr=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);return new Blob([arr],{type:mime})}
+function overdueItems(){return data.filter(x=>x.status!=='paid'&&/^\d{4}-\d{2}-\d{2}$/.test(x.date||'')&&x.date<today()).sort((a,b)=>a.date.localeCompare(b.date)||String(a.name).localeCompare(String(b.name)))}
+let payId=null,lateDismissed=false,receiptObjectUrl=null;
+function setReceiptPreview(saved){if(receiptObjectUrl){URL.revokeObjectURL(receiptObjectUrl);receiptObjectUrl=null}const preview=$('receiptPreview');preview.replaceChildren();preview.classList.remove('show');if(!saved||!saved.blob)return;
+ receiptObjectUrl=URL.createObjectURL(saved.blob);const img=document.createElement('img');img.src=receiptObjectUrl;img.alt='Comprovante anexado';preview.appendChild(img);
+ const link=document.createElement('a');link.className='btn light sm';link.textContent='↓ Baixar foto anexada';link.href=receiptObjectUrl;link.download=saved.name||'comprovante.jpg';link.style.marginTop='10px';preview.appendChild(link);preview.classList.add('show');
+}
+async function openPayForm(id){const x=data.find(t=>t.id===id);if(!x)return;payId=x.id;
+ $('payTitle').textContent=x.status==='paid'?'Revisar baixa e comprovante':'Confirmar pagamento';
+ $('paySummary').innerHTML=`<strong>${safeText(x.name)} · ${money.format(num(x.amount))}</strong><small>Vencimento: ${fmtDate(x.date)} · ${safeText(x.account==='pj'?'Empresa':x.account==='pf'?'Pessoal':'Conta a definir')}${x.confidence==='estimate'?' · Data estimada':''}</small>`;
+ $('payDate').value=x.paidAt||today();$('payProof').value='';$('proofSelected').textContent=x.receipt?'Buscando comprovante salvo…':'';
+ setReceiptPreview(null);$('payModal').classList.add('open');$('payDate').focus();
+ if(x.receipt){try{const saved=await receiptGet(x.id);if(payId!==id)return;setReceiptPreview(saved);$('proofSelected').textContent=saved?'Comprovante armazenado: '+saved.name:'Comprovante informado, mas arquivo indisponível neste dispositivo. Importe o backup que contém a foto.'}catch(err){$('proofSelected').textContent='Não foi possível ler a foto: '+err.message}}
+}
+function closePayForm(){payId=null;$('payModal').classList.remove('open');$('payProof').value='';setReceiptPreview(null)}
+function renderOverdueList(){const all=overdueItems(),confirmed=all.filter(x=>x.confidence!=='estimate'),estimated=all.filter(x=>x.confidence==='estimate');
+ $('overdueTotal').textContent=`${confirmed.length} vencido(s) com data confirmada · ${money.format(sum(confirmed))}`+(estimated.length?` · ${estimated.length} data(s) estimada(s) para conferir (${money.format(sum(estimated))})`:'')+'. Nenhum lançamento é marcado como pago automaticamente.';
+ $('overdueList').innerHTML=all.map(x=>`<div class="overdue-item"><div><strong>${safeText(x.name)}</strong><small>Vencimento: ${fmtDate(x.date)} · ${safeText(x.account==='pj'?'Empresa':x.account==='pf'?'Pessoal':'Conta a definir')}${x.confidence==='estimate'?' · data estimada':''}</small><b>${money.format(num(x.amount))}</b></div><div class="overdue-actions"><button class="btn primary sm" type="button" data-late-pay="${safeText(x.id)}">Confirmar / anexar</button></div></div>`).join('')||'<p class="empty">Nenhuma dívida vencida sem baixa!</p>';
+ $('overdueTitle').textContent=all.length?'⚠ '+all.length+' pagamento(s) vencido(s) sem baixa':'Nenhuma dívida vencida sem baixa';return all;
+}
+function refreshOverdueUI(showPopup=false){const all=overdueItems(),confirmed=all.filter(x=>x.confidence!=='estimate');$('lateStrip').classList.toggle('show',all.length>0);
+ $('lateStripTitle').textContent=all.length?`${all.length} conta(s) vencida(s) sem baixa`:'Nenhuma conta vencida';
+ $('lateStripDesc').textContent=`${money.format(sum(all))} a verificar em todos os meses`+(confirmed.length!==all.length?' · inclui vencimentos estimados':'')+'. O alerta volta na próxima abertura até a baixa.';
+ if($('overdueModal').classList.contains('open'))renderOverdueList();
+ if(showPopup&&all.length&&!lateDismissed){renderOverdueList();$('overdueModal').classList.add('open');$('closeLate').focus()}
+ if(!all.length)$('overdueModal').classList.remove('open');
+}
+function closeLateModal(){lateDismissed=true;$('overdueModal').classList.remove('open')}
+$('openLateList').onclick=()=>{lateDismissed=false;renderOverdueList();$('overdueModal').classList.add('open')};
+$('closeLate').onclick=closeLateModal;
+$('goLateTable').onclick=()=>{closeLateModal();const x=overdueItems()[0];if(x)applyMonth(x.date.slice(0,7));document.getElementById('debts').scrollIntoView({behavior:'smooth',block:'start'})};
+$('overdueList').addEventListener('click',e=>{const id=e.target.closest('[data-late-pay]')?.dataset.latePay;if(id)openPayForm(id)});
+$('payCancel').onclick=closePayForm;
+$('payModal').addEventListener('click',e=>{if(e.target===$('payModal'))closePayForm()});
+$('payProof').addEventListener('change',()=>{const f=$('payProof').files?.[0];$('proofSelected').textContent=f?'Nova foto selecionada: '+f.name+' ('+Math.round(f.size/1024)+' KB)':''});
+$('payForm').addEventListener('submit',async e=>{e.preventDefault();const x=data.find(t=>t.id===payId);if(!x)return;const date=$('payDate').value;
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){alert('Informe a data do pagamento.');return}if(date>today()){alert('A data de pagamento não pode estar no futuro.');return}
+ const f=$('payProof').files?.[0],btn=$('paySave');btn.disabled=true;const oldStatus=x.status,oldPaidAt=x.paidAt,oldReceipt=x.receipt;
+ try{if(f){if(f.size>8*1024*1024)throw Error('Foto maior que 8 MB. Reduza a imagem antes de anexar.');
+ if(!/^image\/(jpeg|png|webp)$/.test(f.type))throw Error('Escolha uma foto JPG, PNG ou WebP.');
+ if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{});
+ // Confirmar a gravação da foto ANTES da baixa financeira.
+ await receiptPut({id:x.id,name:f.name,blob:f,savedAt:new Date().toISOString()});x.receipt={name:f.name,size:f.size,type:f.type,storedAt:new Date().toISOString()};
+ }
+ x.paidAt=date;x.status='paid';if(!save()){x.status=oldStatus;x.paidAt=oldPaidAt;x.receipt=oldReceipt;throw Error('O navegador não conseguiu salvar os dados. Não foi feita a baixa.');}closePayForm();render();refreshOverdueUI(false);toast('Pagamento baixado'+(f?' e comprovante guardado.':'.'));
+ }catch(err){alert('Não foi possível concluir a baixa: '+err.message+'\nO pagamento permanece como antes.')}finally{btn.disabled=false}
+});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('payModal').classList.contains('open'))closePayForm();else if($('overdueModal').classList.contains('open'))closeLateModal()}});
+
+function shiftMonth(m,dir){const [y,mo]=m.split('-').map(Number);const d=new Date(Date.UTC(y,mo-1+dir,1));return d.toISOString().slice(0,7)}
+function fmtDate(v){if(!v)return 'A confirmar';let d=new Date(v+'T12:00:00Z');return isNaN(+d)?'A confirmar':datefmt.format(d)}
+function displayMonth(m){const d=new Date(m+'-01T00:00:00Z');return monthly.format(d).replace('.','').replace(' de ','/').toUpperCase()}
+function num(v){const n=Number(v);return Number.isFinite(n)&&n>=0?n:0}
+function itemMonth(x){return x.month||x.date?.slice(0,7)||''}
+function findMonth(){return data.filter(x=>itemMonth(x)===month)}
+function sum(xs){return Math.round(xs.reduce((a,x)=>a+num(x.amount)*100,0))/100}
+function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(window.__toast);window.__toast=setTimeout(()=>e.style.display='none',2800)}
+function recoverStartMonth(){return /^\d{4}-\d{2}$/.test(prefs.recoverStart||'')?prefs.recoverStart:'2026-11'}
+function goalMetrics(list){const debts=sum(list);const fuelMonth=num(prefs.fuelWeekly)*52/12;const lunchMonth=num(prefs.lunchDaily)*num(prefs.days);const fieldCosts=fuelMonth+lunchMonth;const otherFixed=num(prefs.personal)+num(prefs.business)+num(prefs.extra);const recoverMonthCount=Math.max(1,Math.floor(num(prefs.recoverMonths)||6));const recoverAmount=num(prefs.recoverBalance)/recoverMonthCount;const rStart=recoverStartMonth();const monthOffset=(Number(month.slice(0,4))-Number(rStart.slice(0,4)))*12+Number(month.slice(5,7))-Number(rStart.slice(5,7));const recover=prefs.recoverEnabled&&monthOffset>=0&&monthOffset<recoverMonthCount?recoverAmount:0;const fixed=otherFixed+fieldCosts+recover;const costs=num(prefs.variable)+num(prefs.tax)+num(prefs.reserve);const ok=costs<100;const target=ok?(debts+fixed)/(1-costs/100):NaN;return{debts,fuelMonth,lunchMonth,fieldCosts,otherFixed,recover,recoverAmount,recoverMonthCount,fixed,costs,target,ok}}
+function writePrefs(){for(const key of ['personal','business','extra','variable','tax','reserve','days','fuelWeekly','lunchDaily','recoverBalance','recoverMonths']){$(key).value=prefs[key]??0}$('recoverEnabled').checked=!!prefs.recoverEnabled;$('recoverStart').value=recoverStartMonth();$('earned').value=prefs.earned?.[month]??0}
+function updateFromInputs(){for(const key of ['personal','business','extra','variable','tax','reserve','days','fuelWeekly','lunchDaily','recoverBalance','recoverMonths'])prefs[key]=num($(key).value);prefs.earned=prefs.earned||{};prefs.earned[month]=num($('earned').value);save();render()}
+function applyMonth(m){month=m;$('monthPick').value=month;writePrefs();render()}
+function render(){
+ const items=findMonth();const total=sum(items),paid=sum(items.filter(x=>x.status==='paid')),open=total-paid;
+ const overdue=items.filter(x=>x.status!=='paid'&&x.date&&x.date<today());const undated=items.filter(x=>x.status!=='paid'&&!x.date);
+ const g=goalMetrics(items);$('kpiTotal').textContent=money.format(total);$('kpiOpen').textContent=money.format(open);$('kpiPaid').textContent=money.format(paid);$('kpiGoal').textContent=g.ok?money.format(g.target):'Rever taxas';
+ $('kpiCount').textContent=items.length+' contas programadas';$('kpiOverdue').textContent=[overdue.length?`${overdue.length} vencida(s)`:'Nenhuma vencida',undated.length?`${undated.length} sem data`:null].filter(Boolean).join(' · ');
+ $('recoverMonthly').textContent=money.format(g.recoverAmount);$('recoverWindow').textContent=prefs.recoverEnabled?`(por ${g.recoverMonthCount} meses a partir de ${displayMonth(recoverStartMonth()).toLowerCase()})`:'(desativada na meta)';$('fuelMonth').textContent=money.format(g.fuelMonth);$('lunchMonth').textContent=money.format(g.lunchMonth);$('fieldTotal').textContent=money.format(g.fieldCosts);$('daysShown').textContent=num(prefs.days);$('goalBig').textContent=g.ok?money.format(g.target):'—';$('goalDaily').textContent=g.ok?money.format(g.target/Math.max(1,num(prefs.days))):'—';$('goalHelper').textContent=g.ok?`Contas ${money.format(total)} + campo ${money.format(g.fieldCosts)} + demais ${money.format(g.otherFixed)}${g.recover?' + recomposição '+money.format(g.recover):''}`:'Custos percentuais inválidos';
+ $('remaining').value=g.ok?money.format(Math.max(0,g.target-num(prefs.earned?.[month]))):'—';$('invalidCosts').hidden=g.ok;
+ $('baselineWarning').textContent=(g.otherFixed===0&&g.costs===0)?'Gasolina e almoço já estão calculados; se ativada, a recomposição do limite também. Despesas pessoais, outros custos da empresa e impostos ainda estão zerados: preencha-os para obter uma meta completa.':'Simulação de meta bruta: gasolina e almoço estão incluídos; informe outras despesas sem duplicá-los. Ajuste impostos conforme seu regime real. Faturamento não é lucro.';
+ $('paidBar').style.width=(total?(paid/total*100):0)+'%';$('openBar').style.width=(total?(open/total*100):0)+'%';$('meter').setAttribute('aria-label',`${money.format(paid)} pagos; ${money.format(open)} em aberto`);
+ $('catBoletos').textContent=money.format(sum(items.filter(x=>x.category==='Boleto'||x.category==='Nota fiscal')));
+ $('catCartoes').textContent=money.format(sum(items.filter(x=>x.category==='Cartão')));
+ $('catLoans').textContent=money.format(sum(items.filter(x=>x.category==='Empréstimo')));
+ $('catOther').textContent=money.format(sum(items.filter(x=>!['Boleto','Nota fiscal','Cartão','Empréstimo'].includes(x.category))));
+ const current=today().slice(0,7);const future=data.filter(x=>x.status!=='paid'&&itemMonth(x)>=current);$('remainingFuture').textContent=money.format(sum(future));$('uncertain').textContent=String(items.filter(x=>x.confidence==='estimate').length)+' lançamento(s)';$('recordsCount').textContent=data.length+' lançamentos salvos';
+ const seq=Array.from({length:6},(_,i)=>shiftMonth(month,i));const high=Math.max(...seq.map(m=>sum(data.filter(x=>itemMonth(x)===m))),1);$('periodList').innerHTML=seq.map(m=>{const s=sum(data.filter(x=>itemMonth(x)===m));return `<button class="period-item ${m===month?'active':''}" data-month="${m}" title="Abrir ${m}"><span>${displayMonth(m)}</span><div class="bar-bg"><div class="bar" style="width:${s/high*100}%"></div></div><b>${money.format(s)}</b></button>`}).join('');
+ const entries=items.filter(x=>filter==='all'||x.status===filter).filter(x=>$('category').value==='all'||x.category===$('category').value).filter(x=>$('debtAccount').value==='all'||x.account===$('debtAccount').value).sort((a,b)=>{const da=a.date||'9999';const db=b.date||'9999';return da.localeCompare(db)||a.name.localeCompare(b.name)});
+ $('debts').innerHTML=entries.length?entries.map(x=>{const isLate=x.status!=='paid'&&x.date&&x.date<today();const status=x.status==='paid'?'Pago':isLate?'Vencido':(!x.date?'Sem data':'Em aberto');const cls=x.status==='paid'?'paid':isLate?'late':(!x.date?'uncertain':'pending');return `<tr><td style="white-space:nowrap"><strong>${fmtDate(x.date)}</strong>${x.confidence==='estimate'?'<small>Estimado</small>':''}</td><td><strong>${safeText(x.name)}</strong><small>${safeText(x.note||'')}</small></td><td>${safeText(x.category)}</td><td><span class="bank-chip">${x.account==='pj'?'Empresa':x.account==='pf'?'Pessoal':'A definir'}</span></td><td><span class="badge ${cls}">${status}${x.status==='paid'&&x.paidAt?' em '+fmtDate(x.paidAt):''}${x.receipt?' · com comprovante':''}</span></td><td class="money">${money.format(num(x.amount))}</td><td class="end"><div class="action-cell"><button class="tiny paid-toggle" data-paid="${safeText(x.id)}">${x.status==='paid'?'Editar baixa':'Dar baixa'}</button>${x.status==='paid'?`<button class="tiny" data-undo="${safeText(x.id)}">Reabrir</button>`:''}<button class="tiny" data-edit="${safeText(x.id)}">Editar</button></div></td></tr>`}).join(''):`<tr><td colspan="7" class="empty">Nenhum lançamento para estes filtros. Use “+ Nova conta” para adicionar.</td></tr>`;
+ $('tableSummary').textContent=`Mostrando ${entries.length} de ${items.length} contas · ${money.format(sum(entries))}`;
+}
+function openForm(id=null){editingId=id;const x=id?data.find(z=>z.id===id):null;$('modalTitle').textContent=id?'Editar conta':'Nova conta';$('fName').value=x?.name||'';$('fAmount').value=x?.amount||'';$('fCategory').value=x?.category||'Boleto';$('fAccount').value=x?.account||'unassigned';$('fDate').value=x?.date||'';$('fMonth').value=x?.month||month;$('fStatus').value=x?.status||'pending';$('fConfidence').value=x?.confidence||'confirmed';$('fNote').value=x?.note||'';$('deleteRecord').hidden=!id;$('modal').classList.add('open');$('fName').focus()}
+function closeForm(){$('modal').classList.remove('open');editingId=null}
+$('prevMonth').onclick=()=>applyMonth(shiftMonth(month,-1));$('nextMonth').onclick=()=>applyMonth(shiftMonth(month,1));$('goCurrent').onclick=()=>applyMonth(today().slice(0,7));$('monthPick').onchange=e=>{if(e.target.value)applyMonth(e.target.value)};
+$('addBtn').onclick=()=>openForm();$('cancel').onclick=closeForm;$('modal').addEventListener('mousedown',e=>{if(e.target===$('modal'))closeForm()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeForm()});
+$('periodList').addEventListener('click',e=>{const b=e.target.closest('[data-month]');if(b)applyMonth(b.dataset.month)});
+for(const key of ['personal','business','extra','variable','tax','reserve','days','fuelWeekly','lunchDaily','earned','recoverBalance','recoverMonths'])$(key).addEventListener('input',updateFromInputs);
+$('recoverStart').addEventListener('change',()=>{const v=$('recoverStart').value;if(/^\d{4}-\d{2}$/.test(v)){prefs.recoverStart=v;save();render()}});
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{filter=btn.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('on',x===btn));render()}));$('category').onchange=render;$('debtAccount').onchange=render;
+$('debts').addEventListener('click',e=>{const pd=e.target.closest('[data-paid]'),ed=e.target.closest('[data-edit]'),undo=e.target.closest('[data-undo]');
+ if(pd){openPayForm(pd.dataset.paid);return}
+ if(undo){const x=data.find(z=>z.id===undo.dataset.undo);if(x&&confirm('Reabrir esta obrigação? O comprovante guardado será mantido como histórico, mas a conta voltará a ficar em aberto.')){x.status='pending';delete x.paidAt;save();refreshOverdueUI(false);render();toast('Conta reaberta.')}}
+ if(ed)openForm(ed.dataset.edit)});
+$('fDate').addEventListener('change',()=>{if($('fDate').value){$('fMonth').value=$('fDate').value.slice(0,7)}});
+$('debtForm').onsubmit=e=>{e.preventDefault();const id=editingId||'custom-'+Date.now()+'-'+Math.random().toString(36).slice(2,6);const m=$('fMonth').value,dt=$('fDate').value||null,amount=Number($('fAmount').value);if(!m||!(amount>0)){toast('Informe mês e valor válido.');return}const oldItem=data.find(x=>x.id===id);const obj={...(oldItem||{}),id,name:$('fName').value.trim(),amount:Math.round(amount*100)/100,date:dt,month:m,category:$('fCategory').value,account:$('fAccount').value,status:$('fStatus').value,confidence:$('fConfidence').value,note:$('fNote').value.trim()};if(!obj.name){toast('Preencha a descrição.');return}if(dt&&dt.slice(0,7)!==m){toast('Mês de referência deve coincidir com a data; ou deixe a data vazia.');return}const idx=data.findIndex(x=>x.id===id);if(idx>=0)data[idx]=obj;else data.push(obj);save();closeForm();applyMonth(m);refreshOverdueUI(false);toast('Conta salva com sucesso.')};
+$('deleteRecord').onclick=()=>{if(!editingId)return;if(!confirm('Excluir definitivamente este lançamento do painel?'))return;const deletedId=editingId;data=data.filter(x=>x.id!==editingId);receiptDelete(deletedId).catch(()=>{});save();closeForm();render();refreshOverdueUI(false);toast('Lançamento excluído.')};
+function download(name,content,type){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1200)}
+$('exportBackup').onclick=()=>exportFullBackup();
+async function exportFullBackup(){const btn=$('exportBackup');btn.disabled=true;try{
+ const receipts=[],missing=[];for(const x of data.filter(x=>x.receipt)){let saved=null;try{saved=await receiptGet(x.id)}catch(e){}if(!saved||!saved.blob){missing.push(x.name);continue}
+ receipts.push({id:x.id,name:saved.name,mime:saved.blob.type,dataUrl:await blobDataURL(saved.blob)});}
+ prefs.lastBackup=new Date().toISOString();save();backupDirty=false;
+ download('Giba_Financeiro_Backup_COMPLETO_'+today()+'.json',JSON.stringify({version:4,exportedAt:new Date().toISOString(),items:data,bankSeed,prefs,receipts},null,2),'application/json');refreshBackupUI();
+ if(missing.length)alert('Backup gerado. Porém '+missing.length+' foto(s) de comprovante não estão neste aparelho e ficaram de fora:\n• '+missing.slice(0,10).join('\n• ')+(missing.length>10?'\n…':'')+'\n\nTodos os lançamentos estão no backup; só essas fotos faltam.');
+ else toast('Backup completo exportado com '+receipts.length+' comprovante(s).');
+ }catch(err){alert('Erro ao exportar backup: '+err.message)}finally{btn.disabled=false}}
+$('exportCsv').onclick=()=>{const cols=['date','month','name','category','account','amount','status','confidence','note'];const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';download('Giba_Financeiro_Lancamentos_'+today()+'.csv','\ufeff'+[cols.join(';'),...data.map(x=>cols.map(k=>q(x[k])).join(';'))].join('\r\n'),'text/csv;charset=utf-8')};
+$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{
+ const json=JSON.parse(await f.text());if(!Array.isArray(json.items)||json.items.some(x=>!x.id||!x.name||!Number.isFinite(Number(x.amount))||!x.month))throw Error('Arquivo inválido.');
+ const receipts=Array.isArray(json.receipts)?json.receipts:[];
+ if(receipts.length>300||receipts.some(r=>!r.id||!r.dataUrl||r.dataUrl.length>12000000||!/^data:image\/(jpeg|png|webp);base64,/.test(r.dataUrl)))throw Error('Backup contém comprovante inválido ou grande demais.');
+ const attachedCount=data.filter(x=>x.receipt).length;
+ if(!confirm('Importar backup e SUBSTITUIR os lançamentos atuais?'+(attachedCount?'\n\nAtenção: há '+attachedCount+' comprovante(s) neste aparelho. Exporte antes um backup completo para não perdê-los.':'')))return;
+ // Guardar comprovantes importados antes de alterar o estado financeiro
+ for(const r of receipts){const b=dataURLBlob(r.dataUrl);await receiptPut({id:r.id,name:r.name||'Comprovante',blob:b,savedAt:new Date().toISOString()});}
+ data=json.items; if(Array.isArray(json.bankSeed)){bankSeed=json.bankSeed;ensureTxIds();} data.forEach(x=>{if(!['pf','pj','unassigned'].includes(x.account))x.account=String(x.id||'').startsWith('loan-')?'pf':'unassigned';});
+ prefs={...defaultPrefs(),...(json.prefs||{})};if(!prefs.bankOverrides||typeof prefs.bankOverrides!=='object')prefs.bankOverrides={};if(!prefs.bankDebitOverrides||typeof prefs.bankDebitOverrides!=='object'||Array.isArray(prefs.bankDebitOverrides))prefs.bankDebitOverrides={};normalizeClassPrefs();
+ save();writePrefs();render();renderBank();renderMEI();renderClassCenter();lateDismissed=false;refreshOverdueUI(true);refreshBackupUI();toast('Backup restaurado com sucesso.');
+ }catch(err){alert('Não foi possível importar o backup: '+err.message)}finally{e.target.value=''}};
+
+
+/* Nomes privados definidos no JSON importado, nunca no código publicado. */
+function normalizedName(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase()}
+function isPersonalPJ(x){return x.account==='pj'&&x.amount>0&&(Array.isArray(prefs.personalNames)&&prefs.personalNames.some(n=>normalizedName(x.description).split(/[^A-Z]+/).includes(normalizedName(n))))}
+function isReversedPJ(x){return x.account==='pj'&&x.amount>0&&Array.isArray(prefs.reversedCredits)&&prefs.reversedCredits.includes(x.txid)}
+function rawClassification(x){
+ if(x.account!=='pj'||x.amount<=0)return null;
+ if(isPersonalPJ(x))return 'personal';
+ if(isReversedPJ(x))return 'reversed';
+ if(x.description.startsWith('DEVOLUCAO PIX')||x.description.startsWith('CRED.PARC.EMPRESTIMO'))return 'adjustment';
+ return prefs.bankOverrides[x.txid]||'pending';
+}
+function classificationLabel(s){return ({personal:'Pix pessoal (não serviço)',service:'Serviço confirmado',pending:'A confirmar',reversed:'Crédito estornado',adjustment:'Estorno/ajuste',other:'Outras entradas (não serviço)'})[s]||'A confirmar'}
+
+// Regras explícitas do extrato. Correspondências de lojistas = estimativas ajustáveis, nunca cupom fiscal.
+const debitCategories=[
+ 'Combustível','Restaurantes e padarias','Mercados e supermercados',
+ 'Material de construção','Materiais técnicos / fornecedores','Veículos / manutenção',
+ 'Transporte por aplicativo','Assinaturas / serviços','Previdência / aplicações',
+ 'Materiais para serviços','Ferramentas / equipamentos','Materiais de uso interno','Investimentos / ativos',
+ 'Compras diversas','Encargos bancários','Faturas de cartão',
+ 'Parcelas de empréstimos','Transferência interna','Transferências pessoais',
+ 'Transferências a identificar','A classificar'
+];
+const expenseColors={
+ 'Combustível':'#db8241','Restaurantes e padarias':'#ba6257','Mercados e supermercados':'#e4b050',
+ 'Material de construção':'#5c95ab','Materiais técnicos / fornecedores':'#427fbb',
+ 'Veículos / manutenção':'#9274b5','Transporte por aplicativo':'#8aa4ba',
+ 'Assinaturas / serviços':'#b28eaa','Previdência / aplicações':'#8c9b77',
+ 'Materiais para serviços':'#39988d','Ferramentas / equipamentos':'#8377c4','Materiais de uso interno':'#89a584','Investimentos / ativos':'#7c7eb1',
+ 'Compras diversas':'#95abc2','Encargos bancários':'#bf7788','Faturas de cartão':'#3a657c',
+ 'Parcelas de empréstimos':'#766b9e','Transferência interna':'#a1aab1',
+ 'Transferências pessoais':'#7daab1','Transferências a identificar':'#c2a681',
+ 'A classificar':'#b3bac4'
+};
+const settlementCategories=new Set(['Faturas de cartão','Parcelas de empréstimos','Transferência interna','Transferências pessoais','Transferências a identificar','Previdência / aplicações']);
+function debitCategoryDefault(x){
+ if(x.amount>=0)return '';
+ const n=normalizedName(x.description);
+ if(/PGT\.FATURA CARTAO/.test(n))return 'Faturas de cartão';
+ if(/PREST\.EMPREST|PGTO\.PARC\.EMPRESTIMO/.test(n))return 'Parcelas de empréstimos';
+ if(/JUROS|MULTA|\bIOF\b|TAXA C\/C|ADIANT\.DEPOSITANTE/.test(n))return 'Encargos bancários';
+ if(/TR\.INTERNET/.test(n)&&Array.isArray(prefs.personalNames)&&prefs.personalNames.some(z=>normalizedName(n).split(/[^A-Z]+/).includes(normalizedName(z))))return 'Transferência interna';
+ if(/DB\. QUANTA PREVIDENCI|DB\.APLIC\.PROGRAMADA|DB\. COTAS/.test(n))return 'Previdência / aplicações';
+ if(/DEBITO PIX -/.test(n)&&Array.isArray(prefs.personalNames)&&prefs.personalNames.some(z=>normalizedName(n).split(/[^A-Z]+/).includes(normalizedName(z))))return 'Transferências pessoais';
+ if(/POSTO|COMERCIO DE COMBUS|GAS STATION|RKZ COMERCIO|ULTRA/.test(n))return 'Combustível';
+ if(/PNEUS|AUTO SHOPPING/.test(n))return 'Veículos / manutenção';
+ if(/UBER DO BRASIL/.test(n))return 'Transporte por aplicativo';
+ if(/SANTOS MATERIAIS|SOLUCAOMATERIAIS|FAMILIA DOS PARAFUSOS|MAGIA TUBO|GENESIO MATERI|MATERIAIS DE C/.test(n))return 'Material de construção';
+ if(/KHRONOS|DISTRISEG|FRIGELAR|DELFRIO|DIGITAL SAT|FILM SOM|SETTA SUL/.test(n))return 'Materiais técnicos / fornecedores';
+ if(/PIZZA|RESTAURANTE|CHURR|LANCHES|PANIF|PADARIA|PAES|PADOKA|CAF[EÉ]|CAFE|IFD |IFOOD|BURGER|GRILL|HOT DOG|BUFFET|COSTELA|DONNA DE|PEIXOTO/.test(n))return 'Restaurantes e padarias';
+ if(/MERCADO|SUPERMERC|ATACADISTA|FORT 145|BISTEK|HIPER SELECT|PEIXARIA|CONVENIENCIA|MERCEARIA|ARMAZEM/.test(n))return 'Mercados e supermercados';
+ if(/GOOGLE BRASIL PAGAMENTOS|BYTEDANCE|APPMAX|PAGAR ME/.test(n))return 'Assinaturas / serviços';
+ if(/MODAS|SHINE KIDS|MIX UTILIDADES|ELIZANDRA/.test(n))return 'Compras diversas';
+ if(/^DEBITO PIX|^TR\.INTERNET|^PG\.P\/INTERNET/.test(n))return 'Transferências a identificar';
+ // Não afirmar que um estabelecimento desconhecido vendeu material ou comida.
+ return 'A classificar';
+}
+function debitCategory(x){return prefs.bankDebitOverrides?.[x.txid]||bankRuleFor(x)?.category||debitCategoryDefault(x)}
+function categorySum(rows,kind){return Math.round(rows.filter(x=>debitCategory(x)===kind).reduce((a,x)=>a-Math.min(0,x.amount)*100,0))/100}
+function renderExpenseDashboard(debits){
+ const scopeMonth=$('bankMonth').value;const scopeLabel=scopeMonth==='all'?'Todo o período':new Intl.DateTimeFormat('pt-BR',{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(scopeMonth+'-01T12:00:00Z'));$('expenseScope').textContent=(bankAccount==='pj'?'Empresa':'Pessoal')+' · '+scopeLabel+monthPartialNote(bankAccount,scopeMonth);
+ const grouped={};debits.forEach(x=>{const cat=debitCategory(x);grouped[cat]=(grouped[cat]||0)-x.amount});
+ const add=(arr)=>Math.round(arr.reduce((t,k)=>t+(grouped[k]||0),0)*100)/100;
+ $('sumFuel').textContent=bankMoney(add(['Combustível']));
+ $('sumFood').textContent=bankMoney(add(['Restaurantes e padarias','Mercados e supermercados']));
+ $('sumMaterials').textContent=bankMoney(add(['Material de construção','Materiais técnicos / fornecedores']));
+ $('sumReview').textContent=bankMoney(add(['A classificar','Transferências a identificar']));
+ const relevant=expenseMode==='consumption'?debits.filter(x=>!settlementCategories.has(debitCategory(x))):debits;
+ const amounts={};relevant.forEach(x=>{const name=debitCategory(x);amounts[name]=(amounts[name]||0)-x.amount});
+ const ordered=Object.entries(amounts).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
+ const total=Math.round(ordered.reduce((t,[,v])=>t+v,0)*100)/100;
+ $('donutTitle').textContent=expenseMode==='consumption'?'Gastos classificados':'Todas as saídas';
+ $('donutTotal').textContent=bankMoney(total);
+ $('donutCount').textContent=relevant.length+' lançamentos';
+ $('donutSubtitle').textContent=expenseMode==='consumption'?'Exclui faturas, empréstimos e transferências':'Inclui movimentações financeiras e cartões';
+ const circumference=2*Math.PI*87;let offset=0;
+ let parts=`<circle cx="130" cy="130" r="87" fill="none" stroke="#e9eef2" stroke-width="35"/>`;
+ for(const [label,val] of ordered){const fraction=val/total;const length=fraction*circumference;
+ parts+=`<circle cx="130" cy="130" r="87" fill="none" stroke="${expenseColors[label]||'#a9b6c3'}" stroke-width="35" stroke-dasharray="${length.toFixed(3)} ${(circumference-length).toFixed(3)}" stroke-dashoffset="${(-offset).toFixed(3)}" transform="rotate(-90 130 130)"><title>${safeText(label)}: ${bankMoney(val)} (${(100*fraction).toFixed(1)}%)</title></circle>`;offset+=length;
+ }
+ $('bankDonut').innerHTML=parts;
+ $('bankDonut').setAttribute('aria-label',`Gráfico por categoria; total ${bankMoney(total)}. ${ordered.map(([k,v])=>k+' '+bankMoney(v)).join('; ')}`);
+ $('bankCategories').innerHTML=ordered.map(([k,v])=>{const pct=total?100*v/total:0;return `<button type="button" class="expense-legend-item ${expenseFilter===k?'selected':''}" data-expensecategory="${safeText(k)}" aria-pressed="${expenseFilter===k}"><i class="expense-dot" style="background:${expenseColors[k]||'#aaa'}"></i><span><span class="name">${safeText(k)}</span><small>${pct.toLocaleString('pt-BR',{maximumFractionDigits:1})}% · filtrar lançamentos</small></span><b>${bankMoney(v)}</b></button>`}).join('')||'<p class="pie-empty">Não há saídas nessa seleção.</p>';
+ $('clearExpenseFilter').hidden=expenseFilter==='all';
+ document.querySelectorAll('[data-expensemode]').forEach(b=>{const active=b.dataset.expensemode===expenseMode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ $('expenseFootnote').innerHTML=expenseMode==='consumption'?'<b>Gastos por categoria:</b> remove do gráfico pagamentos de fatura, parcelas de empréstimo, aplicações e transferências. Mantém encargos bancários; não é demonstrativo contábil. Supermercado inclui itens que podem não ser alimentos. Clique numa categoria para conferir cada lançamento.':'<b>Todas as saídas:</b> concilia a soma dos débitos do extrato, incluindo transferências e pagamentos de fatura. Se futuramente importar compras do cartão individualmente, não some novamente a fatura aos gastos de consumo.';
+}
+$('expenseMode').addEventListener('click',e=>{const b=e.target.closest('[data-expensemode]');if(!b)return;expenseMode=b.dataset.expensemode;expenseFilter='all';bankVisible=35;renderBank()});
+$('bankCategories').addEventListener('click',e=>{const b=e.target.closest('[data-expensecategory]');if(!b)return;expenseFilter=expenseFilter===b.dataset.expensecategory?'all':b.dataset.expensecategory;bankVisible=35;renderBank()});
+$('clearExpenseFilter').onclick=()=>{expenseFilter='all';bankVisible=35;renderBank()};
+
+const monthLong=new Intl.DateTimeFormat('pt-BR',{month:'long',year:'numeric',timeZone:'UTC'});
+function capFirst(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function accountRange(acc){const ds=bankSeed.filter(x=>x.account===acc&&/^\d{4}-\d{2}-\d{2}$/.test(x.date||'')).map(x=>x.date).sort();return ds.length?{min:ds[0],max:ds[ds.length-1]}:null}
+function lastDayOf(ym){const [y,m]=ym.split('-').map(Number);return new Date(Date.UTC(y,m,0)).toISOString().slice(0,10)}
+function monthPartialNote(acc,ym){const r=accountRange(acc);if(!r||!/^\d{4}-\d{2}$/.test(ym))return '';const start=ym+'-01',end=lastDayOf(ym),a=r.min>start&&r.min<=end,b=r.max<end&&r.max>=start;
+ if(a&&b)return ` (${bankDate(r.min).slice(0,5)} a ${bankDate(r.max).slice(0,5)})`;if(a)return ` (a partir de ${bankDate(r.min).slice(0,5)})`;if(b)return ` (até ${bankDate(r.max).slice(0,5)})`;return ''}
+function buildBankMonths(){const sel=$('bankMonth'),prev=sel.value;const months=[...new Set(bankSeed.filter(x=>x.account===bankAccount).map(x=>String(x.date||'').slice(0,7)).filter(m=>/^\d{4}-\d{2}$/.test(m)))].sort().reverse();
+ sel.innerHTML='<option value="all">Período completo</option>'+months.map(m=>`<option value="${m}">${capFirst(monthLong.format(new Date(m+'-01T12:00:00Z')))}${monthPartialNote(bankAccount,m)}</option>`).join('');
+ sel.value=(prev!=='all'&&months.includes(prev))||(prev==='all'&&bankMonthTouched)?prev:(months[0]||'all');}
+function bankRows(){return bankSeed.filter(x=>(bankAccount===x.account)&&($('bankMonth').value==='all'||x.date.slice(0,7)===$('bankMonth').value))}
+function bankDate(s){return s.slice(8,10)+'/'+s.slice(5,7)+'/'+s.slice(0,4)}
+function renderBank(){
+ buildBankMonths();
+ const rs=bankRows(), allRs=bankSeed.filter(x=>x.account===bankAccount);
+ const credits=rs.filter(x=>x.amount>0),debits=rs.filter(x=>x.amount<0);
+ const moneySum=arr=>Math.round(arr.reduce((t,x)=>t+Math.abs(x.amount)*100,0))/100;
+ const totalIn=moneySum(credits),totalOut=moneySum(debits);
+ const allIncome=moneySum(allRs.filter(x=>x.amount>0)),allExpenses=moneySum(allRs.filter(x=>x.amount<0));
+ const pj=bankAccount==='pj';
+ $('bankHistoryTitle').textContent=pj?'Movimentações da empresa':'Movimentações pessoais';
+ const vBalance=pj?prefs.bankMeta?.pjBalance:prefs.bankMeta?.pfBalance,vDate=pj?prefs.bankMeta?.pjBalanceDate:prefs.bankMeta?.pfBalanceDate;
+ const hasBal=vBalance!==undefined&&vBalance!==null&&vBalance!==''&&Number.isFinite(Number(vBalance))&&bankSeed.length>0;
+ $('bankSaldoLabel').textContent=(pj?'Empresa':'Pessoal')+' · '+(hasBal?(/^\d{4}-\d{2}-\d{2}$/.test(vDate||'')?'saldo em '+bankDate(vDate):'saldo informado'):'saldo não importado');
+ $('bankSelectedBalance').textContent=hasBal?bankMoney(Number(vBalance)):'—';
+ $('bankSelectedBalance').className=hasBal&&Number(vBalance)<0?'negative':'positive';
+ $('bankBalanceDesc').textContent=pj?'Saldo exclusivo da conta empresarial':'Saldo pessoal / limite bancário';
+ $('bankHistoricalIncome').textContent=bankMoney(allIncome);
+ $('bankHistoricalExpense').textContent=bankMoney(allExpenses);
+ $('bankAccountBanner').innerHTML=pj?'<b>Regra:</b> Pix pessoais reconhecidos pelos nomes do seu arquivo privado não entram na receita de serviços.':'<b>Conta pessoal:</b> histórico separado dos créditos da empresa. Valor e encargos futuros dependem do banco.';
+ $('personalRecovery').hidden=pj;
+ $('pjClassificationZone').hidden=!pj;
+ document.querySelectorAll('[data-banktab]').forEach(b=>{const active=b.dataset.banktab===bankAccount;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
+ $('bankIncome').textContent=bankMoney(totalIn);$('bankExpense').textContent=bankMoney(totalOut);$('bankNet').textContent=bankMoney(totalIn-totalOut);$('bankNet').style.color=totalIn-totalOut>=0?'#087d67':'#be4050';$('bankCount').textContent=rs.length+' registros';
+ if(pj){const kind={personal:[],service:[],pending:[],reversed:[],adjustment:[],other:[]};credits.forEach(x=>kind[rawClassification(x)].push(x));const other=[...kind.reversed,...kind.adjustment,...kind.other];for(const [prefix,arr] of [['pjPersonal',kind.personal],['pjService',kind.service],['pjPending',kind.pending],['pjOther',other]]){$(prefix+'Amount').textContent=bankMoney(moneySum(arr));$(prefix+'Count').textContent=arr.length+' entrada(s)'};}
+ renderExpenseDashboard(debits);
+ $('bankFlowNote').innerHTML=pj?'<b>Empresa:</b> transferências próprias não são despesas operacionais. Valores estornados não são receita.':'<b>Pessoal:</b> transferências entre suas contas não são recebimentos de serviços.';
+ const sorted=rs.filter(x=>expenseFilter==='all'||(x.amount<0&&debitCategory(x)===expenseFilter)).sort((a,b)=>b.date.localeCompare(a.date)||String(b.time||'').localeCompare(String(a.time||'')));
+ $('bankTransactions').innerHTML=sorted.slice(0,bankVisible).map(x=>{
+  const kind=rawClassification(x);let klass='—';
+  if(pj&&x.amount>0){
+    if(isPersonalPJ(x)||isReversedPJ(x)||kind==='adjustment')klass=`<span class="bank-credit-locked">${classificationLabel(kind)}</span>`;
+    else klass=`<select class="bank-credit-select" data-bankclass="${x.txid}" aria-label="Classificação da entrada ${safeText(x.description)}"><option value="pending" ${kind==='pending'?'selected':''}>A confirmar</option><option value="service" ${kind==='service'?'selected':''}>Serviço confirmado</option><option value="other" ${kind==='other'?'selected':''}>Outras entradas</option><option value="personal" ${kind==='personal'?'selected':''}>Pix pessoal</option></select>`;
+  }
+  if(!pj&&x.amount>0){const v=prefs.bankCreditDetails?.[x.txid]||'';klass=`<select class="bank-credit-select" data-pfclass="${x.txid}" aria-label="Classificação da entrada ${safeText(x.description)}"><option value="">A confirmar</option>${incomeChoicesPF.map(([k,l])=>`<option value="${k}" ${k===v?'selected':''}>${safeText(l)}</option>`).join('')}</select>`;}
+  if(x.amount<0){const c=debitCategory(x);klass=`<select class="bank-expense-select" data-debitclass="${x.txid}" aria-label="Categoria do débito ${safeText(x.description)}">${debitCategories.map(z=>`<option value="${safeText(z)}" ${z===c?'selected':''}>${safeText(z)}</option>`).join('')}</select>`;}
+  return `<tr><td>${bankDate(x.date)}${x.time?'<small>'+safeText(String(x.time).slice(0,5))+'</small>':''}</td><td>${safeText(x.description)}<small>${x.amount<0?'Categoria sugerida: '+safeText(debitCategoryDefault(x)):'Entrada no extrato'}</small></td><td class="${x.amount<0?'debit':'credit'}">${x.amount<0?'−':'+'} ${bankMoney(Math.abs(x.amount))}</td><td>${klass}</td></tr>`
+ }).join('')||'<tr><td colspan="4" class="bank-empty">Sem movimentações.</td></tr>';
+ $('bankListNote').textContent=`Exibindo ${Math.min(bankVisible,sorted.length)} de ${sorted.length} lançamentos ${expenseFilter==='all'?'':'da categoria '+expenseFilter} na conta ${pj?'empresarial':'pessoal'}. Extrato disponível nesta conta: ${(r=>r?bankDate(r.min)+' a '+bankDate(r.max):'nenhum')(accountRange(bankAccount))}. As contas a vencer ficam na seção de dívidas, não neste extrato.`;
+ $('loadMoreBank').hidden=bankVisible>=sorted.length;
+}
+function bankMoney(n){return money.format(n)}
+$('bankTabs').addEventListener('click',e=>{const b=e.target.closest('[data-banktab]');if(!b)return;bankAccount=b.dataset.banktab;bankVisible=35;expenseFilter='all';renderBank()});
+$('bankMonth').addEventListener('change',()=>{bankMonthTouched=true;bankVisible=35;expenseFilter='all';renderBank()});
+$('loadMoreBank').addEventListener('click',()=>{bankVisible+=35;renderBank()});
+$('bankTransactions').addEventListener('change',e=>{const v=e.target.closest('[data-bankclass]');if(!v)return;const tx=bankSeed.find(x=>x.txid===v.dataset.bankclass);if(!tx||tx.amount<=0||tx.account!=='pj'||isPersonalPJ(tx)||isReversedPJ(tx))return;const type=v.value;if(!['pending','service','personal','other'].includes(type))return;if(type==='pending'){delete prefs.bankOverrides[tx.txid];delete prefs.bankReviewed[tx.txid];delete prefs.bankCreditDetails[tx.txid];}else{prefs.bankOverrides[tx.txid]=type;prefs.bankReviewed[tx.txid]=true;prefs.bankCreditDetails[tx.txid]=({service:'income_service',personal:'income_personal',other:'income_other'})[type];}save();renderBank();renderMEI();renderClassCenter();toast('Classificação salva nesta conta.');});
+$('bankTransactions').addEventListener('change',e=>{const v=e.target.closest('[data-debitclass]');if(!v)return;const tx=bankSeed.find(x=>x.txid===v.dataset.debitclass);if(!tx||tx.amount>=0||!debitCategories.includes(v.value))return;const category=v.value;prefs.bankDebitOverrides[tx.txid]=category;prefs.bankReviewed[tx.txid]=true;save();renderBank();renderClassCenter();toast('Categoria do gasto salva.');});
+$('exportBankCsv').onclick=()=>{const cols=['data','conta','descricao','valor','categoria_original','categoria_de_saida','natureza_da_entrada','revisada_manualmente'];const esc=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const rows=bankRows().map(x=>[x.date,x.account,x.description,x.amount.toFixed(2),x.category,x.amount<0?debitCategory(x):'',x.amount>0&&x.account==='pj'?classificationLabel(rawClassification(x)):'',x.amount<0&&!!prefs.bankDebitOverrides?.[x.txid]?'sim':'nao']);download('Giba_Extrato_Categorizado_'+bankAccount+'_'+$('bankMonth').value+'.csv','﻿'+[cols.map(esc).join(';'),...rows.map(r=>r.map(esc).join(';'))].join('\r\n'),'text/csv;charset=utf-8')};
+$('recoverEnabled').addEventListener('change',()=>{prefs.recoverEnabled=$('recoverEnabled').checked;save();render()});
+
+
+/* V8: Revisão explícita de categorias, regras por contraparte e histórico do usuário. */
+const debitUnknown=new Set(['A classificar','Transferências a identificar','Compras diversas']);
+const incomeChoicesPJ=[
+ ['income_service','Prestação de serviços · MEI'],['income_commerce','Venda de materiais/mercadorias · MEI'],
+ ['income_industry','Receita de indústria · MEI'],['income_personal','Pix pessoal / aporte próprio (não MEI)'],
+ ['income_transfer','Transferência entre contas (não MEI)'],['income_refund','Reembolso ou estorno (conferir MEI)'],
+ ['income_loan','Crédito de empréstimo (não MEI)'],['income_other','Outra entrada (não MEI)']
+];
+const incomeChoicesPF=[
+ ['pf_service','Serviço da GIBA recebido na conta pessoal (entra no MEI)'],['pf_personal','Transferência pessoal / familiar'],
+ ['pf_reimburse','Reembolso'],['pf_loan','Empréstimo recebido'],['pf_transfer','Transferência entre contas próprias'],
+ ['pf_other','Outras entradas pessoais']
+];
+const labelIncome=Object.fromEntries([...incomeChoicesPJ,...incomeChoicesPF]);
+function bankCounterparty(t){
+ let n=normalizedName(t.description).replace(/\s+/g,' ').trim();
+ n=n.replace(/^(CARTAO DEBITO|CARTAO CREDITO|DEBITO PIX|CREDITO PIX|DEVOLUCAO PIX|PG\.P\/INTERNET|TR\.INTERNET)\s*[-:]\s*/,'');
+ return n.replace(/[^A-Z0-9]+/g,' ').replace(/\s+/g,' ').trim();
+}
+function bankRuleFor(tx){
+ const account=tx.account,dir=tx.amount<0?'out':'in',key=bankCounterparty(tx);
+ if(!key)return null;
+ return [...(prefs.bankRules||[])].reverse().find(r=>r.key===key&&r.direction===dir&&(r.account===account||r.account==='all'))||null;
+}
+function incomeLegacyClass(value){if(!value)return null;if(['income_service','income_commerce','income_industry'].includes(value))return 'service';if(value==='income_personal')return 'personal';return 'other';}
+function meiKindByClass(tx){const value=prefs.bankCreditDetails?.[tx.txid]||bankRuleFor(tx)?.category;return value==='income_commerce'?'comercio':value==='income_industry'?'industria':'servicos';}
+function isClassLocked(tx){return tx.amount>0&&tx.account==='pj'&&(isPersonalPJ(tx)||isReversedPJ(tx)||['adjustment','reversed'].includes(rawClassification(tx)));}
+function hasManualClass(tx){return !!(prefs.bankReviewed?.[tx.txid]||(tx.amount<0&&prefs.bankDebitOverrides?.[tx.txid])||(tx.amount>0&&prefs.bankCreditDetails?.[tx.txid])||(tx.amount>0&&tx.account==='pj'&&prefs.bankOverrides?.[tx.txid]&&prefs.bankOverrides[tx.txid]!=='pending'));}
+function isClassReviewed(tx){if(isClassLocked(tx))return true;return hasManualClass(tx)||(tx.amount<0&&!!bankRuleFor(tx));}
+function isClassUrgent(tx){if(isClassReviewed(tx))return false;if(tx.amount>0)return true;return debitUnknown.has(debitCategoryDefault(tx));}
+function classValue(tx){if(tx.amount<0)return debitCategory(tx);if(tx.account==='pf')return prefs.bankCreditDetails?.[tx.txid]||bankRuleFor(tx)?.category||'';
+ const saved=prefs.bankCreditDetails?.[tx.txid]||bankRuleFor(tx)?.category;
+ if(saved)return saved;
+ return ({service:'income_service',personal:'income_personal',other:'income_other'})[rawClassification(tx)]||'';
+}
+function classOptions(tx){return tx.amount<0?debitCategories.map(x=>[x,x]):tx.account==='pj'?incomeChoicesPJ:incomeChoicesPF;}
+function classChoiceAllowed(tx,val){return classOptions(tx).some(x=>x[0]===val)&&val!=='A classificar'&&val!=='Transferências a identificar';}
+function classLabel(tx,val){return tx.amount<0?val:(labelIncome[val]||'A classificar');}
+function applyClassOne(tx,val){
+ if(!classChoiceAllowed(tx,val)||isClassLocked(tx))return false;
+ prefs.bankReviewed[tx.txid]=true;
+ if(tx.amount<0){prefs.bankDebitOverrides[tx.txid]=val;return true;}
+ prefs.bankCreditDetails[tx.txid]=val;
+ if(tx.account==='pj'){
+   prefs.bankOverrides[tx.txid]=incomeLegacyClass(val);
+   if(['income_service','income_commerce','income_industry'].includes(val)){
+    const d=meiNormalize().bankDetails[tx.txid]||{};
+    d.kind=val==='income_commerce'?'comercio':val==='income_industry'?'industria':'servicos';
+    meiNormalize().bankDetails[tx.txid]=d;
+   }
+ }
+ return true;
+}
+let classVisible=12,classBulk=null;
+function classRows(){
+ const acc=$('classAccount').value,dir=$('classDirection').value,ym=$('classMonth').value,mode=$('classReview').value;
+ return bankSeed.filter(t=>(acc==='all'||acc===t.account)&&(dir==='all'||(dir==='out'?t.amount<0:t.amount>0))&&(ym==='all'||t.date.slice(0,7)===ym)&&!isClassReviewed(t)&&(mode==='all'||isClassUrgent(t)))
+ .sort((a,b)=>Number(isClassUrgent(b))-Number(isClassUrgent(a))||b.date.localeCompare(a.date)||String(a.txid).localeCompare(String(b.txid)));
+}
+function buildClassMonths(){const sel=$('classMonth'),v=sel.value;const months=[...new Set(bankSeed.map(t=>t.date.slice(0,7)))].sort().reverse();sel.innerHTML='<option value="all">Todos os meses</option>'+months.map(m=>`<option value="${m}">${m.slice(5)}/${m.slice(0,4)}</option>`).join('');sel.value=months.includes(v)?v:'all';}
+function renderClassCenter(){
+ buildClassMonths();const allUnreviewed=bankSeed.filter(t=>!isClassReviewed(t));const urgent=allUnreviewed.filter(isClassUrgent);const filtered=classRows();
+ $('classTopCount').textContent=String(urgent.length);$('classPendingBadge').textContent=urgent.length+' sem identificação clara';
+ $('classStat').textContent=`${urgent.length} precisam de identificação · ${allUnreviewed.length} sem conferência humana (inclui sugestões) · ${filtered.length} nesta seleção. As categorias sugeridas não foram confirmadas por você.`;
+ $('classItems').innerHTML=filtered.slice(0,classVisible).map(t=>{
+ const urgentFlag=isClassUrgent(t),val=classValue(t),choices=classOptions(t).filter(([v])=>v!=='A classificar'&&v!=='Transferências a identificar');
+ return `<article class="class-item" data-class-id="${safeText(t.txid)}"><div class="class-info"><div class="class-tags">${(t.amount>0&&bankRuleFor(t))?'<span class="class-tag needs">REGRA SUGERE · CONFIRMAR</span>':`<span class="class-tag ${urgentFlag?'needs':''}">${urgentFlag?'NÃO IDENTIFICADO':'SUGESTÃO · REVISAR'}</span>`}<span class="class-tag">${t.account==='pj'?'🏢 Empresa':'👤 Pessoal'}</span><span class="class-tag">${t.amount<0?'Saída':'Entrada'} · ${bankDate(t.date)}</span></div><strong>${safeText(t.description)}</strong><span class="class-amount ${t.amount<0?'out':'in'}">${t.amount<0?'−':'+'} ${bankMoney(Math.abs(t.amount))}</span><small>${t.amount<0?`Sugestão atual: ${safeText(debitCategory(t))}`:(bankRuleFor(t)?'Sugestão por regra: '+safeText(classLabel(t,bankRuleFor(t).category))+' (confirme)':'Crédito sem origem conferida')} · Identificação: ${safeText(bankCounterparty(t)||'não informada')}</small></div>
+ <div class="class-actions"><label for="cl-${safeText(t.txid)}">Qual é a classificação correta?</label><select id="cl-${safeText(t.txid)}" data-class-choice="${safeText(t.txid)}"><option value="">Selecione a categoria</option>${choices.map(([key,label])=>`<option value="${safeText(key)}" ${key===val?'selected':''}>${safeText(label)}</option>`).join('')}</select><div class="class-buttons"><button type="button" class="btn light" data-class-single="${safeText(t.txid)}">Salvar só este</button><button type="button" class="btn primary" data-class-bulk="${safeText(t.txid)}">Aplicar a todos</button></div></div></article>`;
+ }).join('')||'<div class="bank-empty">Nenhum lançamento pendente neste filtro. Selecione “Todos sem conferência” para revisar as sugestões automáticas.</div>';
+ $('classMore').hidden=filtered.length<=classVisible;
+ $('classRuleCount').textContent=String(prefs.bankRules.length);
+ $('classRules').innerHTML=prefs.bankRules.length?prefs.bankRules.map((r,i)=>`<div class="class-rule"><div><b>${safeText(r.key)}</b><small>${r.direction==='out'?'Saídas':'Entradas'} · ${r.account==='all'?'Duas contas':r.account==='pj'?'Empresa':'Pessoal'} · ${safeText(labelIncome[r.category]||r.category)}</small></div><button type="button" data-class-remove-rule="${i}">Remover regra</button></div>`).join(''):'<p>Nenhuma regra cadastrada.</p>';
+}
+function getClassPicked(id){const select=[...document.querySelectorAll('[data-class-choice]')].find(s=>s.dataset.classChoice===id);return select?.value||'';}
+function refreshAfterClass(){renderBank();renderMEI();renderClassCenter();}
+$('classItems').addEventListener('click',e=>{
+ const btn=e.target.closest('button');if(!btn)return;
+ const id=btn.dataset.classSingle||btn.dataset.classBulk;const tx=bankSeed.find(x=>x.txid===id);if(!tx)return;
+ const val=getClassPicked(id);
+ if(!classChoiceAllowed(tx,val)){toast('Selecione uma categoria válida antes de salvar.');return;}
+ if(btn.dataset.classSingle){
+  const prev=JSON.stringify(prefs);if(!applyClassOne(tx,val))return;
+  if(!save()){prefs=JSON.parse(prev);toast('Falha ao salvar no dispositivo.');return;}
+  refreshAfterClass();toast('Lançamento classificado e conferido.');return;
+ }
+ classBulk={id,val};$('classBothAccounts').checked=false;$('classBothAccounts').disabled=tx.amount>0;$('classBothAccounts').closest('label').style.opacity=tx.amount>0?'.5':'1';$('classSaveRule').checked=true;$('classSaveRuleText').textContent=tx.amount>0?'Lembrar como sugestão para novas entradas (cada uma ainda precisa da sua confirmação)':'Lembrar esta regra para novos extratos';$('classBulkModal').classList.add('open');renderClassBulk();
+});
+function classBulkSelection(){if(!classBulk)return {matching:[],eligible:[],skipped:[]};const tx=bankSeed.find(x=>x.txid===classBulk.id);if(!tx)return {matching:[],eligible:[],skipped:[]};
+ const key=bankCounterparty(tx),dir=tx.amount<0?'out':'in',both=$('classBothAccounts').checked;
+ const matching=bankSeed.filter(z=>bankCounterparty(z)===key&&(z.amount<0?'out':'in')===dir&&((both&&tx.amount<0)||z.account===tx.account));
+ return {matching,eligible:matching.filter(z=>!isClassLocked(z)&&!hasManualClass(z)&&classChoiceAllowed(z,classBulk.val)),skipped:matching.filter(z=>isClassLocked(z)||hasManualClass(z)||!classChoiceAllowed(z,classBulk.val)),tx,key,dir,account:both&&tx.amount<0?'all':tx.account};
+}
+function renderClassBulk(){const s=classBulkSelection();if(!s.tx)return;
+ $('classBulkTitle').textContent='Classificar todos de '+(s.key||'mesma identificação');
+ $('classBulkDescription').textContent='Categoria: '+classLabel(s.tx,classBulk.val)+'. O sistema compara exatamente o estabelecimento/pessoa após retirar prefixos bancários e normalizar os caracteres.';
+ const sumMatch=s.eligible.reduce((a,t)=>a+Math.abs(t.amount),0);
+ $('classBulkSummary').textContent=`${s.eligible.length} lançamento(s) serão classificados, somando ${money.format(sumMatch)}. ${s.skipped.length} já classificados manualmente ou protegidos serão preservados.`;
+ $('classBulkPreview').innerHTML=s.matching.slice(0,14).map(x=>`<div class="class-bulk-row">${safeText(x.date)} · ${x.account==='pj'?'Empresa':'Pessoal'} · ${safeText(x.description)} · <strong>${money.format(Math.abs(x.amount))}</strong>${s.skipped.includes(x)?' · preservado':''}</div>`).join('')+(s.matching.length>14?`<p>…e mais ${s.matching.length-14} lançamento(s).</p>`:'');
+ $('classBulkConfirm').disabled=!s.eligible.length;
+}
+$('classBothAccounts').addEventListener('change',renderClassBulk);
+function closeClassBulk(){classBulk=null;$('classBulkModal').classList.remove('open')}
+$('classBulkCancel').onclick=closeClassBulk;
+$('classBulkModal').addEventListener('click',e=>{if(e.target===$('classBulkModal'))closeClassBulk()});
+$('classBulkConfirm').onclick=()=>{
+ if(!classBulk)return;const sel=classBulkSelection();if(!sel.eligible.length)return;
+ const msg=`Confirmar ${sel.eligible.length} classificação(ões) como “${classLabel(sel.tx,classBulk.val)}”?\n\n${sel.skipped.length} registro(s) revisado(s) serão preservados.`;
+ if(!confirm(msg))return;
+ const snapshot=JSON.stringify(prefs);let count=0;
+ for(const t of sel.eligible)if(applyClassOne(t,classBulk.val))count++;
+ if($('classSaveRule').checked){const rule={key:sel.key,direction:sel.dir,account:sel.account,category:classBulk.val,createdAt:new Date().toISOString()};
+  prefs.bankRules=prefs.bankRules.filter(r=>!(r.key===rule.key&&r.direction===rule.direction&&r.account===rule.account));prefs.bankRules.push(rule);
+ }
+ if(!save()){prefs=JSON.parse(snapshot);alert('Não foi possível salvar. Nenhuma classificação desta operação foi confirmada.');return;}
+ closeClassBulk();refreshAfterClass();toast(`${count} lançamento(s) classificados. Regra ${$('classSaveRule').checked?'salva':'não criada'}.`);
+};
+$('classRules').addEventListener('click',e=>{const button=e.target.closest('[data-class-remove-rule]');if(!button)return;
+ const i=Number(button.dataset.classRemoveRule);if(!prefs.bankRules[i])return;
+ if(!confirm('Remover esta regra para lançamentos futuros? Os registros já classificados manualmente permanecem iguais.'))return;
+ prefs.bankRules.splice(i,1);save();refreshAfterClass();toast('Regra removida. Classificações já salvas foram mantidas.');
+});
+for(const el of ['classAccount','classDirection','classMonth','classReview'])$(el).addEventListener('change',()=>{classVisible=12;renderClassCenter()});
+$('classMore').onclick=()=>{classVisible+=12;renderClassCenter()};
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('classBulkModal').classList.contains('open'))closeClassBulk()});
+
+/* =============== MEI · v6 fiscal: regras 2026, reconciliação e relatórios =============== */
+const meiNormalize=()=>{
+ if(!prefs.mei||typeof prefs.mei!=='object'||Array.isArray(prefs.mei))prefs.mei={};
+ const m=prefs.mei;
+ m.year=Number.isInteger(Number(m.year))&&Number(m.year)>=2025&&Number(m.year)<=2029?Number(m.year):2026;
+ m.limit=Number(m.limit)>0?Number(m.limit):81000;
+ m.opening=typeof m.opening==='string'?m.opening:'';
+ m.employee=['no','yes','unknown'].includes(m.employee)?m.employee:'unknown';
+ if(!Array.isArray(m.manual))m.manual=[];
+ if(!m.bankDetails||typeof m.bankDetails!=='object'||Array.isArray(m.bankDetails))m.bankDetails={};
+ if(!m.reviewed||typeof m.reviewed!=='object'||Array.isArray(m.reviewed))m.reviewed={};
+ m.documentNote=typeof m.documentNote==='string'?m.documentNote:'';
+ return m;
+};
+const meiTypes=['servicos','comercio','industria'];
+function isMeiBankCredit(b){if(!(b.amount>0))return false;if(b.account==='pj')return rawClassification(b)==='service';if(b.account==='pf')return prefs.bankCreditDetails?.[b.txid]==='pf_service';return false;}
+const meiTypeLabel={servicos:'Serviços',comercio:'Comércio',industria:'Indústria'};
+const meiNfLabel={yes:'Com nota fiscal',no:'Dispensada / sem nota',unknown:'Documento a conferir'};
+const meiMonths12=(year)=>Array.from({length:12},(_,i)=>`${year}-${String(i+1).padStart(2,'0')}`);
+const meiSelectedYear=()=>meiNormalize().year;
+function meiOpeningMonths(year){const m=meiNormalize();if(!/^\d{4}-\d{2}-\d{2}$/.test(m.opening))return null;const startY=Number(m.opening.slice(0,4)),startM=Number(m.opening.slice(5,7));if(startY>year)return 0;if(startY<year)return 12;return 13-startM;}
+function meiCap(year){const m=meiNormalize(),mos=meiOpeningMonths(year),annual=num(m.limit);return mos===null?annual:Math.round((annual/12)*mos*100)/100;}
+function meiReceipts(year){
+ const m=meiNormalize();const rs=[];
+ for(const b of bankSeed){if(b.amount<=0||!b.date?.startsWith(String(year)))continue;
+  if(!isMeiBankCredit(b))continue;
+  const d=m.bankDetails[b.txid]||{};
+  if(d.include===false)continue;
+  rs.push({id:b.txid,date:b.date,amount:Number(b.amount),kind:meiTypes.includes(d.kind)?d.kind:meiKindByClass(b),nf:['yes','no'].includes(d.nf)?d.nf:'unknown',description:(b.account==='pf'?'[Conta pessoal] ':'')+b.description,source:'bank'});
+ }
+ for(const e of m.manual){if(!e.date?.startsWith(String(year)))continue;const amt=Number(e.amount);if(!(amt>0))continue;rs.push({id:e.id,date:e.date,amount:amt,kind:meiTypes.includes(e.kind)?e.kind:'servicos',nf:['yes','no'].includes(e.nf)?e.nf:'unknown',description:e.note||'Receita lançada manualmente',source:'manual'});}
+ return rs.sort((a,b)=>a.date.localeCompare(b.date));
+}
+function meiTotal(rs){return Math.round(rs.reduce((s,x)=>s+Number(x.amount)*100,0))/100}
+function meiSummary(){
+ const m=meiNormalize(),year=m.year,rs=meiReceipts(year),limit=meiCap(year),total=meiTotal(rs),left=limit-total,openingMonths=meiOpeningMonths(year);
+ const pending=bankSeed.filter(x=>x.account==='pj'&&x.amount>0&&x.date?.startsWith(String(year))&&rawClassification(x)==='pending');
+ const docsMissing=rs.filter(x=>x.nf==='unknown');
+ const months=meiMonths12(year).map(date=>({date,total:meiTotal(rs.filter(x=>x.date.slice(0,7)===date)),reviewed:!!m.reviewed[date]}));
+ return {m,year,rs,limit,total,left,openingMonths,pending,docsMissing,months};
+}
+function meiGetExpenseMonth(ym){const rs=bankSeed.filter(x=>x.account==='pj'&&x.amount<0&&x.date?.startsWith(ym));return {all:Math.round(rs.reduce((a,x)=>a-x.amount*100,0))/100,operating:Math.round(rs.filter(x=>!settlementCategories.has(debitCategory(x))).reduce((a,x)=>a-x.amount*100,0))/100};}
+function renderMEI(){
+ const s=meiSummary(),m=s.m,y=s.year;
+ $('meiYear').value=String(y);$('meiOpening').value=m.opening;$('meiLimit').value=m.limit;$('meiEmployee').value=m.employee;$('meiDocumentNote').value=m.documentNote;
+ $('meiRevenue').textContent=money.format(s.total);$('meiMax').textContent=money.format(s.limit);$('meiLeft').textContent=money.format(Math.max(0,s.left));
+ const pct=s.limit>0?100*s.total/s.limit:0,remainPct=s.limit>0?100*Math.max(0,s.left)/s.limit:0;
+ $('meiPercent').textContent=`${pct.toFixed(1).replace('.',',')}% do teto utilizado`;
+ $('meiRemainPct').textContent=s.left>=0?`${remainPct.toFixed(1).replace('.',',')}% do limite disponível`:`Excedente: ${money.format(-s.left)}`;
+ $('meiAvg').textContent=money.format(s.limit/12);
+ const track=$('meiProgress'),bar=$('meiProgressBar');track.className='mei-progress'+(pct>=100?' danger':pct>=70?' warn':'');bar.style.width=`${Math.max(0,Math.min(100,pct))}%`;
+ const lawCaveat=y!==2026?' Atenção: o valor legal de anos diferentes de 2026 não foi verificado; o teto é provisório e deve ser atualizado.':'';const method=s.openingMonths===null?'Data de abertura ainda não informada; teto individual não confirmado.':s.openingMonths===0?'MEI aberto após o ano selecionado.':s.openingMonths<12?`MEI aberto durante ${y}: ${s.openingMonths} meses computados para o teto proporcional.`:'Ano completo de atividade considerado.';
+ $('meiOpeningHelp').textContent=method+' O valor de R$ 6.750 representa apenas média de planejamento, e não um limite legal mensal. Confira a abertura e a legislação antes da declaração.'+lawCaveat;
+ const risk=$('meiRisk');let msg='';
+ if(!bankSeed.length)msg='Sem extrato importado. Importe o backup privado e confira todas as receitas do período.';
+ else if(s.openingMonths===0)msg='Data de abertura posterior ao ano selecionado. Confira o cadastro.';
+ else if(pct>120)msg=`CRÍTICO: receita registrada ultrapassa 120% do teto em ${money.format(s.total-s.limit*1.2)}. Procure orientação contábil: há risco de desenquadramento com efeitos retroativos.`;
+ else if(pct>100)msg=`TETO ULTRAPASSADO em ${money.format(-s.left)}. Até 20% de excesso também exige regularização e pode gerar tributos adicionais. Consulte um contador.`;
+ else if(pct>=85)msg=`ATENÇÃO: ${pct.toFixed(1)}% utilizado; restam ${money.format(s.left)}. Revise todas as notas e receitas fora do banco.`;
+ else if(pct>=70)msg=`Alerta preventivo: ${pct.toFixed(1)}% do teto. Faça revisão mensal do faturamento.`;
+ else msg=`Receita registrada: ${pct.toFixed(1)}% do teto. Não significa faturamento anual definitivo sem conciliação de todas as vendas.`;
+ if(s.pending.length)msg+=` Há ${s.pending.length} crédito(s) bancário(s) da empresa ainda sem classificação.`;
+ risk.textContent=msg;risk.className='mei-note '+(pct>100?'mei-bad':'mei-warning');
+ const monthlyBaseline=s.limit/12;
+ $('meiMonths').innerHTML=s.months.map(x=>{const rel=monthlyBaseline?Math.min(100,x.total/monthlyBaseline*100):0;return `<div class="mei-month-row"><b>${x.date.slice(5)}/${String(y).slice(2)}</b><div class="mei-mini-bar"><i class="${x.total>monthlyBaseline?'over':''}" style="width:${Math.max(0,rel)}%"></i></div><b>${money.format(x.total)}</b><span>${x.reviewed?'✓':'Pendente'}</span></div>`}).join('')+`<div class="mei-tiny-legend">Barras comparadas à média de ${money.format(monthlyBaseline)}. Ultrapassá-la em um mês <b>não</b> configura automaticamente excesso do limite anual.</div>`;
+ const nowY=new Date().getFullYear(),nowM=new Date().getMonth()+1,monCount=(y<nowY)?12:(y>nowY)?0:nowM;
+ const projected=monCount>0?s.total/monCount*12:0;
+ const critical=s.docsMissing.length>0||s.pending.length>0||s.months.some(x=>!x.reviewed)||m.employee==='unknown'||!m.opening;
+ $('meiInsights').innerHTML=`<div class="row-pair"><span>Recebimentos conciliados</span><b>${s.rs.filter(x=>x.source==='bank').length}</b></div><div class="row-pair"><span>Receitas lançadas fora do banco</span><b>${s.rs.filter(x=>x.source==='manual').length}</b></div><div class="row-pair"><span>Créditos empresariais não classificados</span><b>${s.pending.length} · ${money.format(meiTotal(s.pending))}</b></div><div class="row-pair"><span>Receitas sem informação fiscal</span><b>${s.docsMissing.length}</b></div><div class="row-pair"><span>Meses ainda sem conferência</span><b>${s.months.filter(x=>!x.reviewed).length}</b></div><div class="row-pair"><span>Projeção linear (indicativa)</span><b>${monCount?money.format(projected):'—'}</b></div><div class="mei-note ${critical?'mei-warning':''}">${critical?'Apuração INCOMPLETA: dados e documentos pendentes.':'Meses e documentos marcados como conferidos. Revise o rascunho com seus comprovantes.'} A projeção não substitui a receita efetiva.</div>`;
+ const revenueByKind={servicos:0,comercio:0,industria:0};for(const r of s.rs)revenueByKind[r.kind]+=r.amount;
+ const expenses=s.months.reduce((a,x)=>a+meiGetExpenseMonth(x.date).operating,0);
+ $('meiDeclarationTotals').innerHTML=`<div class="row-pair"><span>Prestação de serviços (bruto)</span><b>${money.format(revenueByKind.servicos)}</b></div><div class="row-pair"><span>Comércio (bruto)</span><b>${money.format(revenueByKind.comercio)}</b></div><div class="row-pair"><span>Indústria (bruto)</span><b>${money.format(revenueByKind.industria)}</b></div><div class="row-pair"><span><b>Receita bruta total do ano</b></span><b>${money.format(s.total)}</b></div><div class="row-pair"><span>Saídas operacionais nos extratos PJ (sem abater receita)</span><b>${money.format(expenses)}</b></div><div class="row-pair"><span>Referência mensal: ${money.format(monthlyBaseline)}</span><b>Informativo</b></div><p>${(r=>r?'Extrato da empresa disponível de '+bankDate(r.min)+' a '+bankDate(r.max)+'. Receitas fora desse período precisam ser importadas por OFX ou lançadas manualmente.':'Nenhum extrato da empresa importado.')(accountRange('pj'))} Evite registrar novamente como saída cada item já incluído na fatura do cartão.</p>`;
+ const bankList=bankSeed.filter(x=>x.date?.startsWith(String(y))&&isMeiBankCredit(x)).map(x=>{const d=m.bankDetails[x.txid]||{};return {id:x.txid,date:x.date,amount:Number(x.amount),kind:meiTypes.includes(d.kind)?d.kind:meiKindByClass(x),nf:['yes','no'].includes(d.nf)?d.nf:'unknown',description:(x.account==='pf'?'[Conta pessoal] ':'')+x.description,source:'bank'};});
+ $('meiBankSummary').textContent=`${bankList.length} crédito(s) classificados como serviço. ${s.docsMissing.length} receita(s) com documento a conferir. Você pode excluir depósitos que não representem receita do MEI.`;
+ $('meiBankRows').innerHTML=bankList.length?bankList.map(x=>{const d=m.bankDetails[x.id]||{};return `<tr><td>${bankDate(x.date)}<small>${safeText(x.description)}</small></td><td><select data-mei-kind="${safeText(x.id)}">${meiTypes.map(v=>`<option value="${v}" ${x.kind===v?'selected':''}>${meiTypeLabel[v]}</option>`).join('')}</select></td><td>${money.format(x.amount)}</td><td><select data-mei-nf="${safeText(x.id)}"><option value="unknown" ${x.nf==='unknown'?'selected':''}>A conferir</option><option value="yes" ${x.nf==='yes'?'selected':''}>Com NF</option><option value="no" ${x.nf==='no'?'selected':''}>Sem NF / dispensa</option></select></td><td><label style="display:flex;gap:5px;align-items:center"><input type="checkbox" data-mei-include="${safeText(x.id)}" ${d.include===false?'':'checked'}> Sim</label></td></tr>`}).join(''):'<tr><td colspan="5" class="empty">Nenhum serviço confirmado neste ano. Classifique os Pix na tabela bancária e/ou registre vendas manualmente.</td></tr>';
+ const excluded=bankSeed.filter(x=>x.date?.startsWith(String(y))&&isMeiBankCredit(x)&&m.bankDetails[x.txid]?.include===false);
+ if(excluded.length)$('meiBankSummary').textContent+=` ${excluded.length} depósito(s) excluído(s) manualmente do MEI.`;
+ $('meiManualList').innerHTML=m.manual.filter(x=>x.date?.startsWith(String(y))).map(x=>`<div class="mei-manual-item"><div><strong>${bankDate(x.date)} · ${money.format(x.amount)}</strong><br><span>${meiTypeLabel[x.kind]||'Serviços'} · ${meiNfLabel[x.nf]||'A conferir'} · ${safeText(x.note||'Sem referência')}</span></div><button class="tiny" data-mei-remove="${safeText(x.id)}">Excluir</button></div>`).join('')||'<p class="mei-tiny-legend">Nenhum faturamento extra registrado no ano.</p>';
+ const lastReportMonth=$('meiReportMonth').value; $('meiReportMonth').innerHTML=s.months.map(x=>`<option value="${x.date}">${x.date.slice(5)}/${x.date.slice(0,4)} · ${money.format(x.total)}</option>`).join('');
+ const proposedMonth=today().slice(0,7);$('meiReportMonth').value=lastReportMonth.startsWith(String(y))?lastReportMonth:(proposedMonth.startsWith(String(y))?proposedMonth:`${y}-12`);
+ $('meiReviewMonths').innerHTML=s.months.map(x=>`<label><input type="checkbox" data-mei-review="${x.date}" ${x.reviewed?'checked':''}> ${x.date.slice(5)}/${y} · ${money.format(x.total)} — receitas e notas conferidas</label>`).join('');
+ const allReviewed=s.months.every(x=>x.reviewed),ready=allReviewed&&s.docsMissing.length===0&&s.pending.length===0&&m.employee!=='unknown'&&!!m.opening;
+ $('meiReadyStatus').textContent=ready?`Conferência concluída no painel para ${y}. Gere a prévia e confronte os comprovantes antes de transmitir no portal oficial.`:`RASCUNHO, não pronto para envio. Pendente: ${s.months.filter(x=>!x.reviewed).length} mês(es), ${s.docsMissing.length} documento(s), ${s.pending.length} crédito(s) bancário(s); data de abertura ${m.opening?'informada':'faltando'}; empregado ${m.employee==='unknown'?'não confirmado':'confirmado'}.`;
+}
+function meiUpdate(){const m=meiNormalize();m.year=Number($('meiYear').value);m.opening=$('meiOpening').value;m.limit=Math.max(1,Number($('meiLimit').value)||81000);m.employee=$('meiEmployee').value;save();renderMEI()}
+for(const id of ['meiYear','meiOpening','meiLimit','meiEmployee'])$(id).addEventListener('change',meiUpdate);
+$('meiDocumentNote').addEventListener('change',()=>{meiNormalize().documentNote=$('meiDocumentNote').value.trim();save();});
+$('meiBankRows').addEventListener('change',e=>{const id=e.target.dataset.meiKind||e.target.dataset.meiNf||e.target.dataset.meiInclude;if(!id)return;const m=meiNormalize(),d=m.bankDetails[id]||{};
+if(e.target.dataset.meiKind)d.kind=e.target.value;if(e.target.dataset.meiNf)d.nf=e.target.value;if(e.target.dataset.meiInclude)d.include=e.target.checked;
+m.bankDetails[id]=d;save();renderMEI();});
+$('meiRevenueForm').addEventListener('submit',e=>{e.preventDefault();const date=$('meiManualDate').value,amount=Number($('meiManualAmount').value),kind=$('meiManualKind').value,nf=$('meiManualNF').value,note=$('meiManualNote').value.trim();if(!date||!(amount>0)||!meiTypes.includes(kind)){alert('Informe data, valor positivo e tipo de receita.');return}
+if(!confirm('Este recebimento NÃO está registrado como serviço confirmado no extrato bancário? Lançar novamente duplicaria a receita do MEI.'))return;
+const m=meiNormalize();m.manual.push({id:'mei-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),date,amount:Math.round(amount*100)/100,kind,nf,note});m.year=Number(date.slice(0,4));save();$('meiRevenueForm').reset();renderMEI();toast('Receita registrada no controle MEI.');});
+$('meiManualList').addEventListener('click',e=>{const id=e.target.closest('[data-mei-remove]')?.dataset.meiRemove;if(!id)return;if(!confirm('Excluir esta receita manual?'))return;meiNormalize().manual=meiNormalize().manual.filter(x=>x.id!==id);save();renderMEI()});
+$('meiReviewMonths').addEventListener('change',e=>{const ym=e.target.dataset.meiReview;if(!ym)return;meiNormalize().reviewed[ym]=e.target.checked;save();renderMEI()});
+function meiCsv(str){return '"'+String(str??'').replace(/"/g,'""')+'"'}
+$('meiExportCsv').addEventListener('click',()=>{const s=meiSummary();const lines=[['data','natureza','documento_fiscal','origem','valor_bruto','descricao'].map(meiCsv).join(';'),...s.rs.map(x=>[x.date,meiTypeLabel[x.kind],meiNfLabel[x.nf],x.source==='bank'?'Crédito bancário conciliado':'Receita manual',x.amount.toFixed(2).replace('.',','),x.description].map(meiCsv).join(';'))];download(`GIBA_MEI_Receitas_${s.year}.csv`,'\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8');});
+function meiDocShell(title,body){return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${safeText(title)}</title><style>body{font:14px Arial,sans-serif;color:#15283b;max-width:860px;margin:35px auto;padding:15px}h1{color:#136a68}.box{border:1px solid #cedce5;border-radius:10px;padding:14px;margin:16px 0}.warn{border-left:4px solid #c98741;padding:12px;background:#fff6e8}table{width:100%;border-collapse:collapse;margin:16px 0}td,th{padding:9px;border:1px solid #dce5eb;text-align:left}th{background:#eef5f6}.right{text-align:right}.small{font-size:12px;color:#5b7285}.strong{font-weight:bold}button{background:#087b7c;color:#fff;border:0;border-radius:6px;padding:9px 15px}@media print{button{display:none}} </style></head><body><h1>${safeText(title)}</h1><p class="small">GIBA Financeiro — documento gerado localmente; não enviado à Receita. Data da geração: ${safeText(today())}.</p><button onclick="window.print()">Imprimir / Salvar como PDF</button><div class="warn">RASCUNHO PARA CONFERÊNCIA: não é declaração transmitida, guia de recolhimento nem comprovante fiscal. Confira notas, extratos, dinheiro recebido, data de abertura e regras oficiais.</div>${body}<p class="small">Fontes: gov.br/memp/pt-br/teto-do-mei · gov.br/pt-br/servicos/declarar-receita-bruta-anual-para-o-mei · Portal do Empreendedor / relatório mensal. Arquive as notas e documentos pelo prazo mínimo de 5 anos.</p></body></html>`;}
+function meiTaxGrid(rs){const types=['comercio','industria','servicos'],nfs=['no','yes','unknown'];return `<table><thead><tr><th>Origem</th><th>Sem NF / dispensa</th><th>Com NF</th><th>Pendente doc.</th><th>Total bruto</th></tr></thead><tbody>${types.map(k=>{const a=nfs.map(n=>meiTotal(rs.filter(x=>x.kind===k&&x.nf===n)));return `<tr><td>${meiTypeLabel[k]}</td>${a.map(v=>`<td class="right">${money.format(v)}</td>`).join('')}<td class="right strong">${money.format(a.reduce((v,w)=>v+w,0))}</td></tr>`}).join('')}<tr><td class="strong">TOTAL</td><td colspan="3"></td><td class="right strong">${money.format(meiTotal(rs))}</td></tr></tbody></table>`;}
+function meiExportDoc(yearly){const s=meiSummary(),selected=$('meiReportMonth').value,rs=yearly?s.rs:s.rs.filter(x=>x.date.slice(0,7)===selected),ym=yearly?String(s.year):selected,reportType=yearly?'Prévia anual DASN-SIMEI':'Relatório mensal de receitas brutas',title=`GIBA · ${reportType} · ${ym}`;
+const e=yearly?s.months.reduce((a,x)=>{const r=meiGetExpenseMonth(x.date);return {operating:a.operating+r.operating,all:a.all+r.all}},{operating:0,all:0}):meiGetExpenseMonth(ym);
+const partial=`<div class="box"><p><b>Exercício:</b> ${s.year} · <b>Data de abertura:</b> ${safeText(s.m.opening||'não informada')} · <b>Empregado no ano:</b> ${s.m.employee==='yes'?'Sim':s.m.employee==='no'?'Não':'A conferir'}</p><p><b>Período:</b> ${ym} · <b>Receita bruta reconhecida:</b> ${money.format(meiTotal(rs))}</p><p><b>Limite anual individual usado no painel:</b> ${money.format(s.limit)} (${s.openingMonths===null?'não validado: abertura faltando':s.openingMonths+' mês(es)'}).</p></div>${meiTaxGrid(rs)}<p>Relatório de saídas para gestão (não deduzir da receita bruta declarada): <b>${money.format(e.operating)}</b> de despesas operacionais visíveis no extrato da empresa; total de todos os débitos bancários: ${money.format(e.all)}.</p>`;
+let detail=yearly?`<h2>Resumo para a DASN-SIMEI</h2><p>Comércio e indústria juntos: <b>${money.format(meiTotal(rs.filter(x=>x.kind!=='servicos')))}</b> · Prestação de serviços: <b>${money.format(meiTotal(rs.filter(x=>x.kind==='servicos')))}</b> · Total bruto: <b>${money.format(meiTotal(rs))}</b>.</p><h2>Resumo mensal</h2><table><tr><th>Mês</th><th>Receita bruta</th><th>Revisado?</th></tr>${s.months.map(x=>`<tr><td>${x.date}</td><td class="right">${money.format(x.total)}</td><td>${x.reviewed?'Sim':'Pendente'}</td></tr>`).join('')}</table>`:'';
+const missing=rs.filter(x=>x.nf==='unknown');detail+=`<h2>Conferências pendentes</h2><p>${missing.length} receita(s) sem documento fiscal classificado, ${s.pending.length} crédito(s) bancário(s) não conciliado(s), ${s.months.filter(x=>!x.reviewed).length} mês(es) sem revisão no exercício.</p><h2>Receitas consideradas</h2><table><tr><th>Data</th><th>Descrição</th><th>Natureza</th><th>NF</th><th>Valor bruto</th></tr>${rs.map(x=>`<tr><td>${x.date}</td><td>${safeText(x.description)}</td><td>${meiTypeLabel[x.kind]}</td><td>${meiNfLabel[x.nf]}</td><td class="right">${money.format(x.amount)}</td></tr>`).join('')}</table><p>Observações de documentos: ${safeText(s.m.documentNote||'não preenchidas')}</p>`;
+const html=meiDocShell(title,partial+detail);download(`GIBA_MEI_${yearly?'DASN_Rascunho':'Relatorio_Mensal'}_${ym}.html`,html,'text/html;charset=utf-8');}
+$('meiPrintMonth').addEventListener('click',()=>meiExportDoc(false));$('meiPrintYear').addEventListener('click',()=>meiExportDoc(true));
+$('meiManualDate').value=today();
+
+/* =============== V9: importação de extrato OFX (soma sem duplicar) =============== */
+function cyrb53(str,seed=0){let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0;i<str.length;i++){const ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677);}
+ h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(36);}
+function parseOfxAmount(raw){let v=String(raw||'').replace(/\s/g,'');if(!v)return null;const neg=v.startsWith('-');v=v.replace(/^[+-]/,'');
+ const lc=v.lastIndexOf(','),ld=v.lastIndexOf('.');if(lc>-1&&ld>-1)v=lc>ld?v.replace(/\./g,'').replace(',','.'):v.replace(/,/g,'');else if(lc>-1)v=v.replace(',','.');
+ const n=Number(v);return Number.isFinite(n)?{value:n,neg}:null}
+const OFX_DEBIT_TYPES=new Set(['DEBIT','PAYMENT','CHECK','FEE','SRVCHG','ATM','POS','DIRECTDEBIT','REPEATPMT','CASH']);
+function ofxTag(block,k){const m=String(block).match(new RegExp('<'+k+'>([^<\\r\\n]*)','i'));return m?m[1].trim():''}
+function ofxDate(d){return /^\d{8}/.test(d)?`${d.slice(0,4)}-${d.slice(4,6)}-${d.slice(6,8)}`:''}
+function parseOFX(text){
+ if(!/<OFX>/i.test(text))throw Error('O arquivo não parece ser um extrato OFX.');
+ const parts=text.split(/<STMTTRN>/i),head=parts[0];
+ const info={acctid:ofxTag(head,'ACCTID'),holder:ofxTag(head,'HOLDER'),balance:null,balanceDate:''};
+ const bal=parseOfxAmount(ofxTag(text,'BALAMT'));if(bal)info.balance=bal.neg?-bal.value:bal.value;
+ const asOf=ofxDate(ofxTag(text.split(/<LEDGERBAL>/i)[1]||'','DTASOF'));
+ const rows=[],skipped=[],seen=new Map();
+ for(const raw of parts.slice(1)){const b=raw.split(/<\/STMTTRN>/i)[0];
+  const type=ofxTag(b,'TRNTYPE').toUpperCase(),dt=ofxTag(b,'DTPOSTED'),fit=ofxTag(b,'FITID'),memo=ofxTag(b,'MEMO');
+  const name=(ofxTag(b,'NAME')||memo).replace(/\s+/g,' ').trim();const a=parseOfxAmount(ofxTag(b,'TRNAMT'));
+  if(!ofxDate(dt)||!a||!(a.value>0)){skipped.push({why:'sem data ou valor',name});continue}
+  // "SALDO ANTERIOR" vem como crédito em alguns bancos: não é movimentação e não pode virar receita.
+  if(/^SALDO\b/.test(normalizedName(name))){skipped.push({why:'linha de saldo',name,amount:a.value});continue}
+  const amount=Math.round((a.neg||OFX_DEBIT_TYPES.has(type)?-a.value:a.value)*100)/100;
+  const base=[dt,amount.toFixed(2),normalizedName(name)].join('|'),n=(seen.get(base)||0)+1;seen.set(base,n);
+  rows.push({date:ofxDate(dt),time:/^\d{14}/.test(dt)?`${dt.slice(8,10)}:${dt.slice(10,12)}:${dt.slice(12,14)}`:'',amount,description:name||'(sem descrição)',fitid:fit&&fit!=='0'?fit:'',fpBase:base+(n>1?'#'+n:'')});
+ }
+ if(!rows.length)throw Error('Nenhuma movimentação encontrada no arquivo.');
+ const ds=rows.map(r=>r.date).sort();info.min=ds[0];info.max=ds[ds.length-1];info.balanceDate=asOf||info.max;
+ return {info,rows,skipped};
+}
+function nameKey(s){return bankCounterparty({description:s})}
+function nameSim(a,b){const x=nameKey(a),y=nameKey(b);if(!x||!y)return x===y?0.5:0;if(x===y||x.startsWith(y)||y.startsWith(x))return 1;
+ let p=0;while(p<x.length&&p<y.length&&x[p]===y[p])p++;const tx=new Set(x.split(' ')),ty=new Set(y.split(' '));const inter=[...tx].filter(w=>ty.has(w)).length;
+ return Math.max(p/Math.min(x.length,y.length),inter/Math.max(tx.size,ty.size));}
+function dayDiff(a,b){return Math.round((Date.parse(a+'T12:00:00Z')-Date.parse(b+'T12:00:00Z'))/86400000)}
+function planOfx(parsed,account){
+ const acct=parsed.info.acctid||'';
+ const rows=parsed.rows.map(r=>{const fp=cyrb53(account+'|'+acct+'|'+r.fpBase);return {...r,fp,txid:'ofx-'+account+'-'+(r.fitid?'f'+r.fitid:'h'+fp)}});
+ const existing=bankSeed.filter(t=>t.account===account),byFit=new Map(),byFp=new Map();
+ for(const t of existing){if(t.fitid)byFit.set(t.fitid,t);if(t.fp)byFp.set(t.fp,t);}
+ const plan={account,info:parsed.info,skipped:parsed.skipped,dup:[],upgrade:[],suspect:[],add:[]},matched=new Set(),rest=[];
+ // 1) Já importados: mesmo código do banco ou mesma impressão digital (data/hora + valor + nome).
+ for(const r of rows){const hit=(r.fitid&&byFit.get(r.fitid))||byFp.get(r.fp);if(hit){plan.dup.push(r);matched.add(hit.txid)}else rest.push(r)}
+ // 2) Lançamentos antigos (vindos do PDF/JSON, sem impressão digital): reconhecer e manter a classificação.
+ const legacy=existing.filter(t=>!t.fp&&!t.fitid);
+ for(const r of rest){
+  const cands=legacy.filter(t=>!matched.has(t.txid)&&Math.abs(Number(t.amount)-r.amount)<0.005&&Math.abs(dayDiff(t.date,r.date))<=5)
+   .map(t=>({t,sim:nameSim(t.description,r.description),dd:Math.abs(dayDiff(t.date,r.date))})).sort((a,b)=>b.sim-a.sim||a.dd-b.dd);
+  if(cands.length){const best=cands[0];matched.add(best.t.txid);
+   if(best.sim>=0.6||(cands.length===1&&(best.sim>=0.3||best.dd<=1)))plan.upgrade.push({row:r,tx:best.t});
+   else plan.suspect.push({row:r,tx:best.t,why:'mesmo valor e data próxima, nome diferente'});
+   continue}
+  // 3) Mesmo dia, valor e nome, mas horário diferente: provável repetição; não entra sem você autorizar.
+  const sus=existing.find(t=>!matched.has(t.txid)&&(t.fp||t.fitid)&&t.date===r.date&&Math.abs(Number(t.amount)-r.amount)<0.005&&nameKey(t.description)===nameKey(r.description));
+  if(sus){matched.add(sus.txid);plan.suspect.push({row:r,tx:sus,why:'mesmo dia, valor e nome; horário diferente'});continue}
+  plan.add.push(r);
+ }
+ return plan;
+}
+function applyOfx(plan,includeSuspect){
+ const snapshot=JSON.stringify({bankSeed,bankMeta:prefs.bankMeta||{}}),now=new Date().toISOString(),ids=new Set(bankSeed.map(t=>t.txid));
+ const make=r=>{let id=r.txid;while(ids.has(id))id+='b';ids.add(id);return {txid:id,account:plan.account,date:r.date,time:r.time,description:r.description,amount:r.amount,fitid:r.fitid,fp:r.fp,source:'ofx',importedAt:now}};
+ for(const {row,tx} of plan.upgrade){tx.fp=row.fp;if(row.fitid)tx.fitid=row.fitid;tx.time=row.time;tx.ofxDescription=row.description;if(tx.date!==row.date){tx.originalDate=tx.date;tx.date=row.date}}
+ const added=[...plan.add.map(make),...(includeSuspect?plan.suspect.map(s=>make(s.row)):[])];bankSeed.push(...added);
+ if(!prefs.bankMeta||typeof prefs.bankMeta!=='object'||Array.isArray(prefs.bankMeta))prefs.bankMeta={};
+ const i=plan.info,meta=prefs.bankMeta;if(i.acctid){meta.accounts=meta.accounts||{};meta.accounts[i.acctid]=plan.account}
+ if(i.balance!==null&&(!meta[plan.account+'BalanceDate']||i.balanceDate>=meta[plan.account+'BalanceDate'])){meta[plan.account+'Balance']=i.balance;meta[plan.account+'BalanceDate']=i.balanceDate}
+ if(!save()){const old=JSON.parse(snapshot);bankSeed=old.bankSeed;prefs.bankMeta=old.bankMeta;throw Error('O navegador não conseguiu salvar. Nada foi importado.')}
+ return {added:added.length,upgraded:plan.upgrade.length};
+}
+let ofxParsed=null,ofxPlan=null;
+function maskHolder(s){return String(s||'').replace(/\d{11}/g,'***********').replace(/\s+/g,' ').trim()}
+function guessOfxAccount(info){const map=prefs.bankMeta?.accounts||{};if(info.acctid&&map[info.acctid])return map[info.acctid];return /\/0001-|CNPJ/i.test(info.holder)?'pj':'pf'}
+function ofxConfirmLabel(){const p=ofxPlan;if(!p)return;const n=p.add.length+($('ofxIncludeSuspect').checked?p.suspect.length:0);$('ofxConfirm').disabled=!(n||p.upgrade.length);$('ofxConfirm').textContent=n?`Importar ${n} lançamento(s)`:p.upgrade.length?'Atualizar lançamentos antigos':'Nada novo para importar'}
+function renderOfxPlan(){ofxPlan=planOfx(ofxParsed,$('ofxAccount').value);const p=ofxPlan,i=p.info,known=prefs.bankMeta?.accounts?.[i.acctid];
+ $('ofxInfo').innerHTML=`<div><b>Titular:</b> ${safeText(maskHolder(i.holder)||'não informado')}</div><div><b>Conta no banco:</b> ${safeText(i.acctid||'não informada')}${known?' · já importada antes como '+(known==='pj'?'Empresa':'Pessoal'):''}</div><div><b>Período:</b> ${bankDate(i.min)} a ${bankDate(i.max)} · ${ofxParsed.rows.length} movimentações</div>${i.balance!==null?`<div><b>Saldo informado no arquivo:</b> ${money.format(i.balance)}</div>`:''}`;
+ const c=(cls,label,n)=>`<div class="ofx-count ${cls}"><small>${label}</small><strong>${n}</strong></div>`;
+ $('ofxCounts').innerHTML=c('good','Novos para adicionar',p.add.length)+c('','Já existiam (ignorados)',p.dup.length)+c('','Antigos reconhecidos (classificação mantida)',p.upgrade.length)+c(p.suspect.length?'warn':'','Possíveis repetidos (não entram)',p.suspect.length)+(p.skipped.length?c('','Linhas de saldo ignoradas',p.skipped.length):'');
+ $('ofxSuspectBox').hidden=!p.suspect.length;$('ofxSuspectN').textContent=p.suspect.length;$('ofxIncludeSuspect').checked=false;
+ $('ofxSuspectList').innerHTML=p.suspect.slice(0,40).map(s=>`<div><b>${bankDate(s.row.date)} ${safeText(s.row.time.slice(0,5))} · ${safeText(s.row.description)} · ${money.format(s.row.amount)}</b><br>Parece com: ${bankDate(s.tx.date)}${s.tx.time?' '+safeText(String(s.tx.time).slice(0,5)):''} · ${safeText(s.tx.description)} (${s.why})</div>`).join('')+(p.suspect.length>40?`<div>…e mais ${p.suspect.length-40}.</div>`:'');
+ $('ofxNote').textContent=(known&&known!==p.account?'ATENÇÃO: esta conta do banco já foi importada como '+(known==='pj'?'Empresa':'Pessoal')+'. Confira a conta escolhida. ':'')+'Entradas novas chegam como "a confirmar" e só somam no MEI depois que você classificar. Recomendo baixar um backup antes.';
+ ofxConfirmLabel();
+}
+async function readOfxFile(f){const buf=await f.arrayBuffer();const head=new TextDecoder('latin1').decode(buf.slice(0,800));return new TextDecoder(/ENCODING:\s*UTF-?8|encoding="utf-8"/i.test(head)?'utf-8':'windows-1252').decode(buf)}
+$('ofxBtn').onclick=()=>$('ofxFile').click();
+$('ofxFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{if(f.size>10*1024*1024)throw Error('Arquivo grande demais para um extrato.');
+ ofxParsed=parseOFX(await readOfxFile(f));$('ofxAccount').value=guessOfxAccount(ofxParsed.info);renderOfxPlan();$('ofxModal').classList.add('open');
+ }catch(err){alert('Não foi possível ler o extrato: '+err.message)}finally{e.target.value=''}};
+$('ofxAccount').onchange=renderOfxPlan;$('ofxIncludeSuspect').onchange=ofxConfirmLabel;
+function closeOfx(){$('ofxModal').classList.remove('open');ofxParsed=null;ofxPlan=null}
+$('ofxCancel').onclick=closeOfx;$('ofxModal').addEventListener('click',e=>{if(e.target===$('ofxModal'))closeOfx()});
+$('ofxBackupFirst').onclick=()=>exportFullBackup();
+$('ofxConfirm').onclick=()=>{if(!ofxPlan)return;try{const acc=ofxPlan.account,r=applyOfx(ofxPlan,$('ofxIncludeSuspect').checked);closeOfx();backupDirty=true;bankAccount=acc;bankVisible=35;expenseFilter='all';
+ renderBank();renderMEI();renderClassCenter();refreshPrivateImport();refreshBackupUI();toast(`${r.added} lançamento(s) novo(s)`+(r.upgraded?` · ${r.upgraded} antigo(s) reconhecido(s)`:'')+'. Classifique as entradas novas.');
+ }catch(err){alert(err.message)}};
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('ofxModal').classList.contains('open'))closeOfx()});
+// Conta pessoal: classificar entrada direto na tabela (inclui "serviço da GIBA recebido na conta pessoal").
+$('bankTransactions').addEventListener('change',e=>{const v=e.target.closest('[data-pfclass]');if(!v)return;const tx=bankSeed.find(x=>x.txid===v.dataset.pfclass);if(!tx||tx.amount<=0||tx.account!=='pf')return;
+ if(!v.value){delete prefs.bankCreditDetails[tx.txid];delete prefs.bankReviewed[tx.txid]}else if(incomeChoicesPF.some(([k])=>k===v.value)){prefs.bankCreditDetails[tx.txid]=v.value;prefs.bankReviewed[tx.txid]=true}else return;
+ save();renderBank();renderMEI();renderClassCenter();toast(v.value==='pf_service'?'Marcado como serviço da GIBA: soma na receita do MEI.':'Classificação salva.')});
+/* Lembrete de backup */
+function refreshBackupUI(){const has=data.length||bankSeed.length,last=prefs.lastBackup?new Date(prefs.lastBackup):null,days=last&&!isNaN(+last)?Math.floor((Date.now()-last)/86400000):null;
+ const show=!!has&&(backupDirty||days===null||days>=7);$('backupStrip').classList.toggle('show',show);if(!show)return;
+ $('backupStripTitle').textContent=backupDirty?'Dados novos importados: faça um backup':days===null?'Nenhum backup registrado neste aparelho':`Último backup há ${days} dia(s)`;
+ $('backupStripDesc').textContent='Os dados ficam só neste navegador. Guarde o arquivo JSON em local privado, nunca em pasta compartilhada ou pública.'}
+$('backupNow').onclick=()=>exportFullBackup();
+
+$('monthPick').value=month;writePrefs();render();renderBank();renderMEI();renderClassCenter();
+// Exibir vencidos não pagos na abertura, independentemente do mês selecionado.
+refreshOverdueUI(true);
+window.addEventListener('pageshow',event=>{if(event.persisted){lateDismissed=false;refreshOverdueUI(true)}});
+if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{});
+refreshBackupUI();
+
+// Instalação progressiva, sem bloquear funções do painel e sem rede externa
+const pwaDataGuide=document.getElementById('pwaDataGuide');
+const refreshPrivateImport=()=>{pwaDataGuide.style.display=bankSeed.length||data.length?'none':'block';};
+refreshPrivateImport();
+document.getElementById('initialImport').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('initialOfx').onclick=()=>$('ofxFile').click();
+// Backup/import already exist in v5: recheck state after successful import.
+document.getElementById('importFile').addEventListener('change',()=>setTimeout(refreshPrivateImport,120));
+let installEvent=null;
+let installDismissed=false;
+const pwaHelp=document.getElementById('pwaInstallGuide');
+const installBtn=document.getElementById('installPWA');
+const updateInstallUI=()=>{
+ const eligible=location.protocol==='https:'||['localhost','127.0.0.1'].includes(location.hostname);
+ if(window.matchMedia('(display-mode: standalone)').matches||installDismissed||!eligible){pwaHelp.style.display='none';return;}
+ pwaHelp.style.display='block';
+ installBtn.textContent=installEvent?'Instalar aplicativo':'Como instalar';
+};
+window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();installEvent=event;updateInstallUI();});
+window.addEventListener('appinstalled',()=>{installEvent=null;pwaHelp.style.display='none';});
+document.getElementById('dismissInstall').onclick=()=>{installDismissed=true;updateInstallUI();};
+installBtn.onclick=async()=>{
+ if(installEvent){const e=installEvent;installEvent=null;e.prompt();try{await e.userChoice}catch(_){}updateInstallUI();}
+ else alert('No Android com Chrome: abra o menu ⋮ e escolha “Instalar app” ou “Adicionar à tela inicial”. Use o endereço HTTPS publicado do aplicativo.');
+};
+updateInstallUI();
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){
+ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(err=>console.warn('PWA offline indisponível:',err)));
+}
+</script></body></html>

@@ -1,0 +1,35 @@
+GIBA Financeiro PWA — VERSÃO 9 (importação de extrato OFX sem duplicar)
+
+ATUALIZAÇÃO (a partir da v8)
+1. No app atual (v8), faça um BACKUP completo antes de qualquer coisa.
+2. Substitua no servidor somente: index.html, sw.js, manifest.webmanifest. MANTENHA a pasta icons/ que já está publicada (ela não vem neste pacote).
+3. Abra o endereço publicado no Chrome, recarregue e feche/reabra o app instalado. O cache foi renovado (v9).
+4. Seus dados continuam no aparelho. Não é preciso importar nada de novo.
+
+NOVO: IMPORTAR EXTRATO OFX
+- Botão "↑ Extrato OFX" no topo. Escolha o arquivo .ofx baixado do banco.
+- O app mostra antes de importar: quantos são novos, quantos já existiam, quantos lançamentos antigos foram reconhecidos e quantos parecem repetidos.
+- Os lançamentos são SOMADOS aos existentes. Pode importar períodos que se sobrepõem: os repetidos são ignorados.
+- Identificação de cada lançamento: código do banco (quando existe) ou data/hora até o segundo + valor + nome.
+- Na primeira importação OFX, os lançamentos antigos (vindos do PDF/JSON) são reconhecidos pelo valor, data próxima e nome, e mantêm a classificação já feita.
+- "Possíveis repetidos" NÃO entram, a não ser que você marque a opção. Confira a lista antes.
+- A linha "SALDO ANTERIOR" do OFX é ignorada (não é receita).
+- O app lembra qual conta do banco é Empresa e qual é Pessoal.
+- Entradas novas chegam como "a confirmar" e só somam no MEI depois que você classificar.
+
+MUDANÇAS IMPORTANTES
+- Código de cada lançamento agora é fixo. Antes era a posição na lista, o que podia embaralhar classificações ao trocar o extrato.
+- Meses do extrato, saldo e período passam a ser calculados a partir dos dados (nada mais fixo em julho–outubro/2026).
+- Backup não trava mais se faltar foto de comprovante: gera o arquivo e avisa quais fotos faltaram.
+- Lembrete de backup: aparece após importar extrato ou quando o último backup tiver 7 dias ou mais.
+- Recomposição do limite: os campos "Saldo a recuperar" e "Meses" agora funcionam; novo campo "Começar em".
+- Conta pessoal: a opção "Serviço da GIBA recebido na conta pessoal" SOMA na receita do MEI. A receita bruta do MEI independe da conta em que o dinheiro entrou.
+  ATENÇÃO: se na v8 você marcou algum crédito pessoal como "Recebimento de trabalho pessoal", ele agora soma no MEI. Confira na seção MEI e desmarque "Inclui no MEI" se não for receita da GIBA.
+- Regras automáticas de ENTRADA agora só sugerem. Cada crédito novo precisa da sua confirmação antes de entrar no MEI. Regras de SAÍDA continuam automáticas.
+
+PROTEÇÃO DE DADOS
+- Este pacote NÃO contém extratos, transações, CPFs, CNPJs nem comprovantes.
+- Arquivos OFX e backups JSON contêm dados bancários: guarde em local privado e apague cópias desnecessárias (ex.: pasta Takeout do Drive).
+- Armazenamento local no navegador; o app não acessa o banco nem sincroniza em segundo plano.
+- Restaurar backup JSON SUBSTITUI os dados locais. Importar OFX apenas SOMA.
+- Nenhum total de faturamento fiscal é definitivo sem conciliação de todas as vendas do ano.
