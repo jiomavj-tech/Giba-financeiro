@@ -1,4 +1,12 @@
-GIBA Financeiro PWA — VERSÃO 9 (importação de extrato OFX sem duplicar)
+GIBA Financeiro PWA — VERSÃO 9.1 (importação OFX + mais categorias automáticas)
+
+NOVO NA 9.1
+- Categoria nova: "Mão de obra / ajudantes". Classifique um Pix do ajudante, toque em "Aplicar a todos" e mantenha "Lembrar esta regra": os próximos Pix para ele entram sozinhos.
+- Categorias novas: "Farmácia / saúde", "Cuidados pessoais" e "Devolução a cliente".
+- Mais nomes reconhecidos automaticamente: RESTAURANT (nome cortado), SUPER, ANGELONI, SAMS, FARMA, DROGARIA, BARBEARIA.
+- "DEVOLUCAO PIX" nas saídas vira "Devolução a cliente" (fora dos gastos de consumo). Se o mesmo cliente tiver crédito contado como serviço no MEI, o painel do MEI avisa para você conferir.
+- Os nomes dos ajudantes NÃO ficam no código (o repositório é público): as regras ficam só no seu aparelho e no backup.
+
 
 ATUALIZAÇÃO (a partir da v8)
 1. No app atual (v8), faça um BACKUP completo antes de qualquer coisa.

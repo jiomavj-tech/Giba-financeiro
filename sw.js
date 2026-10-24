@@ -1,4 +1,4 @@
-const CACHE='giba-financeiro-public-v8-classificacao';
+const CACHE='giba-financeiro-public-v9-1';
 const CORE=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE&&k.startsWith('giba-financeiro-public-')).map(k=>caches.delete(k)))),self.clients.claim()])));
