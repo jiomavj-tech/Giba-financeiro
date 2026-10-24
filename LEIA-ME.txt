@@ -1,4 +1,8 @@
-GIBA Financeiro PWA — VERSÃO 9.1 (importação OFX + mais categorias automáticas)
+GIBA Financeiro PWA — VERSÃO 9.2
+
+NOVO NA 9.2
+- Contam como conferidas automaticamente SÓ as saídas definidas pelo tipo de operação do banco: pagamento de fatura de cartão, parcela de empréstimo, juros/IOF/tarifas, aplicação/previdência e devolução de Pix.
+- Sugestões pelo nome do estabelecimento (padaria, posto, mercado etc.) continuam aparecendo para conferência, porque o nome não garante o que foi comprado.
 
 NOVO NA 9.1
 - Categoria nova: "Mão de obra / ajudantes". Classifique um Pix do ajudante, toque em "Aplicar a todos" e mantenha "Lembrar esta regra": os próximos Pix para ele entram sozinhos.
